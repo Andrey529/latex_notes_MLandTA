@@ -1,0 +1,322 @@
+\documentclass[russian]{lecture-notes}
+
+\usepackage[final]{graphicx} % возможность вставлять изображения в текст
+\usepackage{subcaption} % пакет нужен, чтобы можно было ставить несколько рисунктов рядом     
+
+\usepackage{amssymb} % для знака пустого множества
+\usepackage{amsfonts} % для букв с двойными штрихами (знак натуральных чисел)
+
+\usepackage{tikz}  % для рисования графов
+\usetikzlibrary{graphs}
+
+\usepackage{cancel} % для зачеркивания слова
+
+\title{Математическая логика и теория алгоритмов}
+\lecturer{Поcов Илья Александрович}
+\notesauthor{Блюдин Андрей}
+
+\begin{document}
+	\maketitle
+
+\begin{sloppypar}
+
+\tableofcontents
+
+\section{Математическая логика}
+
+\subsection{Исчисление высказываний}
+
+\subsubsection{Основные понятия}
+
+\begin{definition} 
+	Логическая функция ~--- это множество из 2 элементов. Также, логической функцией называют множество логических значений
+		
+	$B = \{0, 1 \}$, где 0 ~--- это ложь (false), а 1 ~--- это истина (true)
+\end{definition}
+
+\begin{definition} 
+	Логическая функция от $n$ переменных
+	$$f : B^n \rightarrow B$$ 
+\end{definition}
+
+\begin{remark}
+    Часто логические функции вводят как перечисление возможных аргументов и значений функции при этих аргументах
+\end{remark}
+
+\begin{example}
+	Введем функцию $f(x,y)$
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|cl}
+			\cline{1-3}
+				x & y & f(x,y) & &  \\ \cline{1-3}
+				0 & 0 & 0      &  &  \\ \cline{1-3}
+				0 & 1 & 1      &  &  \\ \cline{1-3}
+				1 & 0 & 1      &  &  \\ \cline{1-3}
+				1 & 1 & 1      &  &  \\ \cline{1-3}
+		\end{tabular}
+		\caption{Таблица истинности для $f(x,y)$}
+	\end{table}
+	
+	Эту же функцию можно задать функцией $f(x,y) = max(x,y)$
+\end{example}
+
+\begin{proposition}
+    Функция от $n$ переменных может быть $f(x_1, x_2, x_3, \dots, x_n)$
+    
+    \begin{table}[h!]
+  	  	\centering
+		\begin{tabular}{|c|c|c|c|l|}
+			\hline
+			$x_1$ & $x_2$ & ... & $x_n$                   & f($x_1, x_2, \dots, x_n$) \\ \hline
+			0    & 0    & ... & 0                      & 0 или 1                  \\ \hline
+			...  & ...  & ... & ...                    & 0 или 1                  \\ \hline
+			1    & 1    & ... & \multicolumn{1}{l|}{1} & 0 или 1                  \\ \hline
+		\end{tabular}
+		\caption{Таблица истинности для $f(x_1,x_2, \dots, x_n)$}
+	\end{table}
+		
+	При этом количество всех возможных наборов аргументов равняется $2^n$, а количество всех возможных функций при всех возможных наборах аргументов равняется $2^{2^n}$
+\end{proposition}
+
+\begin{corollary}
+    Посчитаем количество таких функий для разных $n$
+    
+    $n = 1 \quad 2^2 = 4$ функций $f(x)$
+    
+	$n = 2 \quad 2^{2^2} = 16$ функций $f(x,y)$
+
+	$n = 3 \quad 2^{2^3} = 2^8 = 256$ функций $f(x,y,z)$
+\end{corollary}
+
+\subsubsection{Функции от 1 переменной (их определения)}
+
+\begin{example}
+	Перечислим все возможные функции от 1 переменной
+	
+	\begin{table}[h!]
+	\centering
+		\begin{tabular}{|c|c|c|c|l|}
+			\hline
+			$x$ & $f_1(x)$ & $f_2(x)$ & $f_3(x)$ & $f_4(x)$ \\ \hline
+			0 & 0       & 0       & 1       & 1       \\ \hline
+			1 & 0       & 1       & 0       & 1       \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	Данные функции имеют значение:
+	
+	$f_1(x) = 0$ ~--- функция 0
+	
+	$f_2(x) = x$ ~--- функция $x$
+	
+	$f_3(x) = !x, \bar x, \neg x$, not $x$ ~--- функция отрицания (не $x$)
+	
+	$f_4(x) = 1$ ~--- функция 1
+	
+\end{example}
+
+\subsubsection{Функции от 2 переменных (их определения)}
+
+\begin{example}
+	Перечислим все возможные функции от 2 переменных
+	
+	\begin{table}[h!]
+	\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			$x$ & $y$ & $f_1(x)$ & $f_2(x)$ & $f_3(x)$ & $f_4(x)$ & $f_5(x)$ & $f_6(x)$ & $f_7(x)$ & $f_8(x)$ \\ \hline
+			0 & 0 & 0       & 0       & 0       & 0       & 0       & 0       & 0       & 0       \\ \hline
+			0 & 1 & 0       & 0       & 0       & 0       & 1       & 1       & 1       & 1       \\ \hline
+			1 & 0 & 0       & 0       & 1       & 1       & 0       & 0       & 1       & 1       \\ \hline
+			1 & 1 & 0       & 1       & 0       & 1       & 0       & 1       & 0       & 1       \\ \hline
+		\end{tabular}
+		\caption{Таблица истинности для $f(x,y)$}
+	\end{table}
+	
+	Продолжение:
+	
+	\begin{table}[h!]
+	\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			$x$ & $y$ & $f_9(x)$ & $f_{10}(x)$ & $f_{11}(x)$ & $f_{12}(x)$ & $f_{13}(x)$ & $f_{14}(x)$ & $f_{15}(x)$ & $f_{16}(x)$ \\ \hline
+			0 & 0 & 1       & 1       & 1       & 1       & 1       & 1       & 1       & 1       \\ \hline
+			0 & 1 & 0       & 0       & 0       & 0       & 1       & 1       & 1       & 1       \\ \hline
+			1 & 0 & 0       & 0       & 1       & 1       & 0       & 0       & 1       & 1       \\ \hline
+			1 & 1 & 0       & 1       & 0       & 1       & 0       & 1       & 0       & 1       \\ \hline
+		\end{tabular}
+		\caption{Таблица истинности для $f(x,y)$}
+	\end{table}
+	
+	\textbf{Перечислим основные значения функций:}
+	
+	$f_2(x,y)$ ~--- это конъюнкция или "лочическое и"  или логическое умножение ($xy, x\&y, x \wedge y$)
+	
+	$f_7(x,y)$ ~--- это исключающее или ($x+y, x XOR y, x \oplus y$), также данную функцию можно ассоциировать как $(x+y) mod 2$
+	
+	$f_8(x,y)$ ~--- это логическое или, но ее можно также записать как $max(x,y)$  ($x|y, x \lor y$)
+	
+	$f_{10}(x,y)$ ~--- это эквивалентность ($x \Leftrightarrow y, x \equiv y, x == y$)
+	
+	$f_{14}(x,y)$ ~--- это импликация ($x \Rightarrow y, x \rightarrow y$)
+	
+	Импликация работает так, что истина следует из чего угодно:
+	
+	лешия не существует $\Rightarrow$ русалок не существует = 1 (1 $\Rightarrow$ 1 = 1)
+	
+	допса скучная $\Rightarrow$ русалок не существует = 1 (0 $\Rightarrow$ 1 = 1)
+	
+	русалки существуют $\Rightarrow$ драконы существуют = 1 (0 $\Rightarrow$ 0 = 1)	
+
+	 x $\Rightarrow$ y = 0 только если x = 1, а y = 0
+
+	$f_{12}(x,y)$ ~--- это обратная импликация ($x \Leftarrow y = y \Rightarrow x$)
+	
+	$f_{9}(x,y)$ ~--- стрелка Пирса ($x \downarrow y = \overline{x \lor y}$)
+
+	$f_{15}(x,y)$ ~--- штрих Шеффера ($x | y = \overline{xy}$)
+	
+	$f_{3}(x,y)$ ~--- запрет по y ($x > y = \overline{x \Rightarrow y}$)
+
+	$f_{1}(x,y)$ ~--- 0
+
+	$f_{4}(x,y)$ ~--- $x$
+	
+	$f_{5}(x,y)$ ~--- запрет по x ($x < y = \overline{x \Leftarrow y}$)
+
+	$f_{6}(x,y)$ ~--- $y$
+	
+	$f_{11}(x,y)$ ~--- не y ($\neg y$)
+	
+	$f_{13}(x,y)$ ~--- не x ($\neg x$)
+	
+	$f_{16}(x,y)$ ~--- 1
+
+\end{example}
+
+\begin{definition} 
+	Логические выражения ~--- способ задания логических функций с помощью переменных, цифр 0 или 1 и операций:
+	
+	$\cdot \quad \lor \quad \Rightarrow \quad  \Leftrightarrow \quad + \quad \equiv \quad | \quad \downarrow \quad < \quad >$ 
+\end{definition}
+
+\begin{example} 
+	Примеры логических выражений:
+
+	$(x \lor y) = $
+	
+	$(x \Rightarrow yz) \lor (y \equiv z)$
+	
+	$(0 \Rightarrow x) \lor (1 \Rightarrow y)$
+\end{example}
+
+\begin{definition} 
+	Значения логического выражения можно записать \textbf{Таблицей истинности}
+\end{definition}
+
+\begin{example}
+	$f(x, y, z) = (x \lor y)z$
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			x & y & z & f(x,y,z) \\ \hline
+			0 & 0 & 0 & 0        \\ \hline
+			0 & 0 & 1 & 0        \\ \hline
+			0 & 1 & 0 & 0        \\ \hline
+			0 & 1 & 1 & 1        \\ \hline
+			1 & 0 & 0 & 0        \\ \hline
+			1 & 0 & 1 & 1        \\ \hline
+			1 & 1 & 0 & 0        \\ \hline
+			1 & 1 & 1 & 1        \\ \hline
+		\end{tabular}
+	\end{table}
+\end{example}
+
+\begin{remark}
+	Порядок строчек в таблеце истинности может быть любым, но лучше использовать как у двоичных чисел    
+\end{remark}
+
+\begin{proposition}
+    Таблицы истинности часто считают постепенно
+	
+	\begin{table}[h!]
+		\centering		
+		\begin{tabular}{|c|c|c|c|l|}
+			\hline
+			x & y & z & $x \lor y$ & $(x \lor y)z$  \\ \hline
+			$\dots$ & $\dots$ & $\dots$ & $\dots$ & $\dots$ \\ \hline
+			$\dots$ & $\dots$ & $\dots$ & $\dots$ & $\dots$ \\ \hline
+		\end{tabular}
+	\end{table}
+\end{proposition}
+
+\subsubsection{Приоритеты операций}
+	
+	$$\neg$$
+	
+	$$\cdot$$
+	
+	$$\lor$$
+	
+	$$+ \quad \equiv$$
+	
+	$$\Rightarrow \quad \Leftarrow$$
+	
+	$$| \quad \downarrow \quad < \quad >$$
+	
+\begin{example}
+	Примеры приоритетов операций:
+	
+	$\neg x \lor y = (\neg x) \lor y$
+	
+	$x \lor y z = x \lor (y z)$
+	
+	$x \Rightarrow y \lor z = x \Rightarrow (y \lor z)$
+\end{example}	
+
+\subsubsection{Алгебраические преобразования логических выражений}
+
+\begin{definition} 
+	Алгебраические преобразования логических выражений ~--- изменяем выражения по правилам, обычно в сторону упрощения
+\end{definition}
+
+\begin{example}
+	$(0 \Rightarrow x) \lor (1 \Rightarrow y) = 1 \lor (1 \Rightarrow y) = 1$
+\end{example}
+
+\begin{proposition*}
+    $$\overline{\overline{x}} = x$$
+    
+    \textbf{Доказательство:}
+    
+    \begin{table}[h!]
+		\centering		
+		\begin{tabular}{|c|c|c|}
+			\hline
+			$x$ & $\overline{x}$ & $\overline{\overline{x}}$ \\ \hline
+			0 & 1 & 0 \\ \hline
+			1 & 0 & 1 \\ \hline
+		\end{tabular}
+	\end{table}
+
+\end{proposition*}
+
+\begin{proposition*}
+    При $\lor$:
+    
+    $$1 \lor x = 1$$
+    
+    $$0 \lor x = x$$
+    
+    $$x \lor y = y \lor x$$
+\end{proposition*}
+
+
+
+\end{sloppypar}
+
+\end{document}
