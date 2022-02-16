@@ -315,7 +315,350 @@
     $$x \lor y = y \lor x$$
 \end{proposition*}
 
+\subsubsection{Таблица эквивалентных логических выражений}
 
+\begin{proposition}
+    $x \lor y = y \lor x $ - симметричность
+    
+
+    $x \lor 0 = x$
+    
+
+    $x \lor 1 = 1$
+    
+
+    $x \lor x = x$
+    
+
+    $x \lor \overline{x} = 1 $
+        
+        
+        $\qquad$ \textbf{Доказательство:}
+        
+        
+    \begin{table}[h!]
+		\centering		
+		\begin{tabular}{|c|c|c|}
+			\hline
+			$x$ & $\overline{x}$ & $x \lor \overline{x}$ \\ \hline
+			0 & 1 & $0 \lor 1 = 1$ \\ \hline
+			1 & 0 & $1 \lor 0 = 1$ \\ \hline
+		\end{tabular}
+	\end{table}
+        
+    $xy = yx $
+
+    $x*0 = 0$
+    
+    $x*1 = x$
+
+    $x*x = x$
+
+    $x* \overline{x} = 0$
+
+    $x+y = y + x$
+    
+    $x + 0 = x$
+
+    $x + 1 = \overline{x}$
+
+    $x + x = 0$
+
+    $x + \overline{x} = 1 $
+
+\end{proposition}
+
+\begin{proposition}
+    
+    $x \lor (y\lor z) = (x \lor y ) \lor z$ - ассоциативность
+    
+    Ассоциативность означает,что порядок скобок не важен 
+    
+    \begin{example} $x \Rightarrow y \neq y \Rightarrow x$ - не симметричная функция
+    
+    $$$$
+    
+        \textbf{Доказательство: }
+        
+    \begin{table}[h!]
+        \centering	
+        \begin{tabular}{|l|l|l|}
+            \hline
+            x y & $x \Rightarrow y$ & $y \Rightarrow x$ \\ \hline
+            0 0 & 1 & 1 \\ \hline
+            0 1 & 1 & 0 \\ \hline
+            1 0 & 0 & 1 \\ \hline
+            1 1 & 1 & 1 \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \end{example}
+    
+    \begin{remark}
+        $x \Rightarrow y \neq y\Rightarrow x$
+    \end{remark}
+        
+$x \Rightarrow 0 = \overline{x}$
+
+$0 \Rightarrow x = 1$
+ $$$$
+
+\textbf{Доказательство: }
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+x & $x \Rightarrow 0$ \\ \hline
+0 & $0 \Rightarrow 0 = 1$ \\ \hline
+1 & $1 \Rightarrow 0 = 0$ \\ \hline
+\end{tabular}
+\end{table}
+
+$x\Rightarrow 1 = 1$
+
+$1 \Rightarrow x = x$
+
+$x \Rightarrow x = 1$
+
+$x \Rightarrow \overline{x} = \overline{x}$
+
+$\overline{x} \Rightarrow x = x$
+
+$\overline{x} \Rightarrow y \Rightarrow z$ договоримся, что это $x \Rightarrow y (y\Rightarrow z) \neq (x \Rightarrow y) \Rightarrow z$
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+x y z  & $x \Rightarrow y$ & $y \Rightarrow z$ & $x \Rightarrow (y \Rightarrow z)$ & $(x \Rightarrow y) \Rightarrow z$ \\ \hline
+0 0  0 & 1               & 1                 & 1                                 & 0                                 \\ \hline
+0 0 1  & 1               & 1                 & 1                                 & 1                                 \\ \hline
+0 1 0  & 1               & 0                 & 1                                 & 0                                 \\ \hline
+0 1 1  & 1               & 1                 & 1                                 & 1                                 \\ \hline
+1 0 0  & 0               & 1                 & 1                                 & 1                                 \\ \hline
+1 0 1  & 0               & 1                 & 1                                 & 1                                 \\ \hline
+1 1 0  & 1               & 0                 & 0                                 & 0                                 \\ \hline
+1 1 1  & 1               & 1                 & 1                                 & 1                                 \\ \hline
+\end{tabular}
+\end{table}
+
+$x \Leftrightarrow y = y \Leftrightarrow x$
+
+$x \Leftrightarrow 0 = \overline{x}$
+
+$x \Leftrightarrow 1 = x$
+
+$x \Leftrightarrow x =1$
+
+$x \Leftrightarrow \overline{x} = 0$
+
+$x \Leftrightarrow (y\Leftrightarrow z) = (x \Leftrightarrow y) \Leftrightarrow z$ - ассоциативно
+
+\end{proposition}
+
+\begin{proposition}
+
+Дистрибутивность
+
+$(x \lor y) z = xz \lor yz$
+
+$(x+y)z = xz + yz$ по таблице истинности
+
+$(x \& y ) \lor z$ ($xy \lor z = (x \lor z)(y \lor z)$
+
+$(x \lor y) \& z = (x \& z) \lor (y \& z)$
+
+$(x \& y) \lor z = (x \lor z) \& (y\lor z)$
+
+\begin{remark}
+
+$ $
+    $(x_{1} \lor x_{2} \lor x_{3}) (y_{1} \lor y_{2}) = (x_{1} \lor x_{2} \lor x_{3})y_{1} \lor (x_{1} \lor x_{2} \lor x_{3})y_{2} = x_{1}y_{1} \lor x_{2}y_{1} \lor x_{3}y_{1} \lor x_{1}y_{2} \lor x_{2}y_{2} \lor x_{3}y_{2}$
+
+    $xy \lor z = (x \lor z)(y\lor z) = xy \lor xz \lor zy \lor zz = xy \lor  xz \lor zy \lor z = xy \lor xz \lor zy \lor z*1 = xy \lor z(x\lor y \lor 1) = xy \lor z$ сошлось
+    
+\end{remark}
+
+$x+y = \overline{x\Rightarrow}y$ - смотри Таблицу истинности
+
+$(x\Rightarrow y)(y\Rightarrow x) = x \Rightarrow y$
+
+\subsubsection{Многочлены Жегалкина}
+
+    \begin{remark}
+    
+        Одну и ту же функцию можно записать по разному.
+    
+    \end{remark}
+    
+    В алгебре: $f(x) = 1 +x = x + 1 = x + 5 - 4 = sin(x-x) + x = ...$
+    
+    В логике: $f(x,y) = x \lor y = x \lor y \lor 0 = (x \lor y)(\overline{y} \lor y = x\overline{y} \lor y$ (= - дистрибутивность)
+    
+    \textbf{Многочлены Жегалкина для логической формулы}
+    
+    
+    \begin{definition}
+        $f(x_{1}......x_{n}$) - это многочлен с переменными xi, конспектами 0,1 и со степенями переменных $\leqslant$ 1. Это многочлены от xi $\mathbf{Z_{2}}$
+    \end{definition}
+    
+    \begin{example}
+    
+        $f(x,y,z) = 1 + x + yz + xyz$
+        
+        $1 + x \qquad \qquad xy+xyz$
+        
+        $1 + xy$
+    \end{example}
+    
+    Не многочлены
+    
+    $1 + x + (y \lor z)$
+    
+    $1 + x + z^{2}$ нельзя степень 2
+    
+    
+    \begin{remark}
+        В общем случае многочлен от 1 переменной ($а_{i} =$ 0 или 1)
+        
+        $a_{0} + a_{1}x$
+        
+        от 2ух: $a_{0} + a_{1}x+a{2}y+a{3}xy$
+        
+        от 3ех: $a_{0} + a_{1}x + a_{2}y + a_{3}z + a_{4}xy + a_{5}xz + a_{6}yz + a_{7}xyz$
+        
+        \end{remark}
+        
+        В общем случае $f(x1....x_{n}$) $a_{0} + a_{1}x_{1} + ... + a_{n}x_{n} + ax_{1}x_{2} + ax_{1}x_{3}$ + ... (все пары переменных) + $ ax_{1}x_{2}x_{3}+ax_{1}x_{3}x_{2} \leftarrow $все тройки перменных$ + ax_{1}x_{2}x_{3}...x_{n}$
+        
+        \begin{definition}
+            $\forall f(x_{1}...x_{n})$ - логические функция $\exists!$ многочлен Жегалкина $g(x_{1}...x_{n}) : f = g$
+        \end{definition}
+        
+        \begin{remark}
+            Всего 4 функции от 1ой переменной
+            
+            $f(x) = 0 = \overline{x} = 0 + 0x$
+            
+            $f(x) = 1 = 1 = 1 + 0x$
+            
+            $f(x) = x = x = 0 + 1x$
+            
+           $f(x) = \overline{x} = 1 + x = 1 + 1x$
+        \end{remark}
+    
+    \textbf{Докозательство:}
+    
+        \begin{definition}
+            Разные многочлены - это разные логические функции т.е. $f(x_{1} ... x_{n} = a_{0} + ... + a_{1}x_{1} ... x_{n}$
+            
+            $g(x_{1}...x_{n}) = b_{0} + ... + bx_{1} ... x_{n}$
+            
+            $\exists!$ : $a_{i} \neq b_{i}$ различающийся
+            
+        \end{definition}
+        
+        \qquad \textbf{Доказательство:}
+        
+        Возьмем индекс с самым большик количеством переменных
+        
+        $f(x,y,z) = 1 + x + xy + xyz = ... + 1x + Dy + Dz + 1xy$
+        
+        $g(x,y,z) = 1 + y + z + xyz ... + Dx + 1y + 1z$
+        
+        для переменных этого слагаемого подставим 1 0xy 
+        
+        для остальных переменных : 0
+        
+        [ В примере $x=1,y=0,z=0 : f(1,0,0) и g(1,0,0)$ ]
+        
+        и в f и в g все другие слагаемые равны 0
+        
+            Теперь f(...) и g(...) 
+            
+                $f(...) = a_{i}x{1}x_{2}x_{3} \neq b_{i}x_{1}x_{2}x_{3}$ $\Rightarrow f(x_{1}...x_{n}$) $\neq y$ 
+                
+    \qquad \textbf{Доказательство:}
+    
+    Проверим, что многочленов Жегалкина столько, сколько функций:
+    
+        Посчитаем
+        
+        $a_{0} + a_{1}x_{1}+ ... + a_{1}x_{1}x_{2}...x_{n}$
+        
+        Сколько слагаемых:
+        
+        1) 1 слагаемых без переменных
+        
+        n слагаемых с переменной
+        
+        \qquad $a_{1}x_{1} + ... + a_{n}x_{n}$
+        
+        $C_{n}^{2}$ - слагаемых с 2 - мя переменными
+        
+        $С_{n}^{3}$ - слагаемых с 3 - мя переменными
+        
+        $C_{n}^{n}$ - слагаемых с n переменными
+        
+        Всего : $ C_{n}^{0} + C_{n}^{1} + C_{n}^{2} + ... C_{n}^{n} = 2^{n}((1+1)^{2}) $
+        
+    \begin{example}
+            
+    $a_{0} + a_{1}x$ - 2 слагаемых
+            
+    $a_{0} + a_{1}x + a_{2}y+a_{3}xy - 2^2 = 4$ слагаемых
+    
+    2) Все слагаемых имею вид: $x_{1},x_{2},x_{3}...x_{n}$ (0 или 1) - $2^n$ слагаемых
+    
+    Итого: многочлен Жегалкина от n переменных 
+    \end{example}
+    
+    
+    \begin{problem}
+    Сколько разных многочленов?
+    
+    Это столько же, сколько логический функций
+    
+    Итог: 
+    
+    \textbf{Следствие:} Любая логическая функция может быть представлена в виде многочлена Жегалкина
+    
+    \end{problem}
+    
+    \begin{example}
+    
+        $f(x,y) = x \lor y$
+        
+        $f(x,y) = x*y$ - уже многочлен Жегалкина
+        
+        \textbf{Метод неопределенных коэффициентов:}
+        
+        
+        Подберем $x \lor y = a_{0} + a_{1}x + a_{2}y + a_{3}xy$
+        
+        $f(0,0) = 0$
+        
+        $f(0,0) = a_{0} + a_{1}*0 + a_{2}*0 + a_{3}...$
+        
+        $f(1,0) = 1 \lor 0 = 1$
+        
+        $f(1,0) = a_{0} + a_{1} = a_{1}$ ($a_{0} = 0, \Rightarrow a_{1} = 1$
+        
+        $f(0,1) =$ аналогично $\Rightarrow a_{1} = 1$
+        
+        $f(x,y) = x+y + a_{3}xy$
+        
+        $f(1,1) = 1 \lor 1 = 1$
+        
+        $f(1,1) = 1 + 1 + a_{3} = 0 + a_{3} = a_{3}$, $a_{3}=1$
+        
+        Ответ: $x\lor y = x+y+xy$
+        
+        
+    \end{example}
+
+\end{proposition}
 
 \end{sloppypar}
 
