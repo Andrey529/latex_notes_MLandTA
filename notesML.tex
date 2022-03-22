@@ -982,18 +982,391 @@ $\Rightarrow$ данный ДНФ не может быть равным 0
 	
 	$$f(1, 1) = 0$$
 
-\begin{tikzpicture}
-	\begin{axis}
-	\addplot3 [only marks,  mark size=5pt]
-	table [x = a, y = b, z = c] {
-		a      b      c
-		0      0      0
-		1      0      1 
-		1      1      0 
-		0      1      1
-	};
-	\end{axis}
+\begin{tikzpicture}[scale=3,line width=1.5mm]
+
+\draw [circle] (1,0,0) -- (1,0,1) -- (1,1,1) -- (1,1,0) -- cycle;
+\draw [circle] (0,0,0) -- (0,0,1) -- (0,1,1) -- (0,1,0) -- cycle;
+
+\draw [circle] (0,0,0)   -- (1,0,0)  -- (1,0,1)  -- (0,0,1)  -- cycle;
+\draw [circle] (0,1,0)   -- (1,1,0)  -- (1,1,1)  -- (0,1,1)  -- cycle;
+
+\draw [circle] (0,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,0,0)  node[draw, fill = red, red] (nodeA) {}  -- (1,1,0)  node[draw, fill = black] (nodeA) {}  -- (0,1,0)  node[draw, fill = red, red] (nodeA) {}  -- cycle;
+\draw [circle] (0,0,1)  node[draw, fill = red, red] (nodeA) {}  -- (1,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,1,1)  node[draw, fill = red, red] (nodeA) {}  -- (0,1,1)  node[draw, fill = black] (nodeA) {}  -- cycle;
+
 \end{tikzpicture}
+
+
+\subsubsection{Задача минимизации ДНФ}
+
+	Данная задача тоже является сложной, также как и задача (не) выполнимости
+	
+	Дана логическая функция (в виде ДНФ). Необходимо найти самую короткую ДНФ эквивалентную данной.
+	
+	Минимальной ДНФ считается та, где меньше количество литералов и дизъюнкций
+	
+\begin{example}
+	$\overline{x} \: \overline{y} \lor z$ короче, чем $xy \lor yz$
+\end{example}
+
+\begin{remark}
+	Далее рассматриваться все будет для функции от 3 переменных $f(x, y, z)$
+\end{remark}
+
+\begin{remark}
+	Какова таблица истинности $xyz = abc$, где $a = 0$ или $1, b = 0$ и $1, c = 0$ или $1$
+	
+	$0 \Rightarrow$ надо поставить отрицание
+	
+	$1 \Rightarrow$ нет отрицания
+\end{remark}
+
+\begin{example}
+	$f(x, y, z) = \overline{x} \: y \: \overline{z}$
+	
+	Если $\overline{x} \: y \: \overline{z} = 1$
+	
+	$\Rightarrow \overline{x} = 1,  y = 1, \overline{z} = 1$ 
+	
+	$\Rightarrow x = 0,  y = 1, z = 0$
+
+	$\Rightarrow x = a, y = b, z = c$
+
+	$\Rightarrow a = 0, b = 1, c = 0$
+
+\begin{tikzpicture}[scale=3,line width=1.5mm]
+
+\draw [circle] (1,0,0) -- (1,0,1) -- (1,1,1) -- (1,1,0) -- cycle;
+\draw [circle] (0,0,0) -- (0,0,1) -- (0,1,1) -- (0,1,0) -- cycle;
+
+\draw [circle] (0,0,0)   -- (1,0,0)  -- (1,0,1)  -- (0,0,1)  -- cycle;
+\draw [circle] (0,1,0)   -- (1,1,0)  -- (1,1,1)  -- (0,1,1)  -- cycle;
+
+\draw [circle] (0,0,0)  node[draw, fill = red, red] (nodeA) {}  -- (1,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,1,0)  node[draw, fill = black] (nodeA) {}  -- (0,1,0)  node[draw, fill = black] (nodeA) {}  -- cycle;
+\draw [circle] (0,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,1,1)  node[draw, fill = black] (nodeA) {}  -- (0,1,1)  node[draw, fill = black] (nodeA) {}  -- cycle;
+
+\end{tikzpicture} 
+ 
+\end{example}
+
+
+
+\begin{example}
+	$f(x, y, z) = xy$
+	
+	Если $xy = 1$
+	
+	$\Rightarrow x = 1,  y = 1$
+
+	$\Rightarrow x = a, y = b$
+
+	$\Rightarrow a = 1, b = 1$
+	 
+\begin{tikzpicture}[scale=3,line width=1.5mm]
+
+\draw [circle] (1,0,0) -- (1,0,1) -- (1,1,1) -- (1,1,0) -- cycle;
+\draw [circle] (0,0,0) -- (0,0,1) -- (0,1,1) -- (0,1,0) -- cycle;
+
+\draw [circle] (0,0,0)   -- (1,0,0)  -- (1,0,1)  -- (0,0,1)  -- cycle;
+\draw [circle] (0,1,0)   -- (1,1,0)  -- (1,1,1)  -- (0,1,1)  -- cycle;
+
+\draw [circle] (0,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,1,0)  node[draw, fill = black] (nodeA) {}  -- (0,1,0)  node[draw, fill = black] (nodeA) {}  -- cycle;
+\draw [circle] (0,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,1,1)  node[draw, fill = black] (nodeA) {}  -- (0,1,1)  node[draw, fill = black] (nodeA) {}  -- cycle;
+
+\draw [red] (1,0,0) -- (1,1,0);
+
+\end{tikzpicture} 
+
+	Аналогично, $f(x, y, z) = \overline{y} \: \overline{z}$
+	
+	ребро: $y = 0, z = 0, x = ?$ ~--- не важно 
+
+\begin{tikzpicture}[scale=3,line width=1.5mm]
+
+\draw [circle] (1,0,0) -- (1,0,1) -- (1,1,1) -- (1,1,0) -- cycle;
+\draw [circle] (0,0,0) -- (0,0,1) -- (0,1,1) -- (0,1,0) -- cycle;
+
+\draw [circle] (0,0,0)   -- (1,0,0)  -- (1,0,1)  -- (0,0,1)  -- cycle;
+\draw [circle] (0,1,0)   -- (1,1,0)  -- (1,1,1)  -- (0,1,1)  -- cycle;
+
+\draw [circle] (0,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,1,0)  node[draw, fill = black] (nodeA) {}  -- (0,1,0)  node[draw, fill = black] (nodeA) {}  -- cycle;
+\draw [circle] (0,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,1,1)  node[draw, fill = black] (nodeA) {}  -- (0,1,1)  node[draw, fill = black] (nodeA) {}  -- cycle;
+
+\draw [red] (0,0,1) -- (1,0,1);
+
+\end{tikzpicture} 
+
+\end{example}
+
+	Последнее ~--- конъюнкт из 1 литерала:
+	
+	$x, \overline{x}, y, \overline{y}, z, \overline{z}$
+	
+\begin{example}
+
+	$f(x, y, z) = \overline{y}$
+	
+	Если $\overline{y} = 1$
+	
+	$\Rightarrow y = 0, x = ?, z = ?$
+
+\begin{tikzpicture}[scale=3,line width=1.5mm]
+
+\draw [circle] (1,0,0) -- (1,0,1) -- (1,1,1) -- (1,1,0) -- cycle;
+\draw [circle] (0,0,0) -- (0,0,1) -- (0,1,1) -- (0,1,0) -- cycle;
+
+\draw [circle] (0,0,0)   -- (1,0,0)  -- (1,0,1)  -- (0,0,1)  -- cycle;
+\draw [circle] (0,1,0)   -- (1,1,0)  -- (1,1,1)  -- (0,1,1)  -- cycle;
+
+\draw [circle] (0,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,1,0)  node[draw, fill = black] (nodeA) {}  -- (0,1,0)  node[draw, fill = black] (nodeA) {}  -- cycle;
+\draw [circle, fill = red] (0,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,1,1)  node[draw, fill = black] (nodeA) {}  -- (0,1,1)  node[draw, fill = black] (nodeA) {}  -- cycle;
+
+\end{tikzpicture} 
+
+	Или конъюнкт $x$, грань $x = 1$
+	
+\begin{tikzpicture}[scale=3,line width=1.5mm]
+
+\draw [circle, fill = red] (1,0,0) -- (1,0,1) -- (1,1,1) -- (1,1,0) -- cycle;
+\draw [circle] (0,0,0) -- (0,0,1) -- (0,1,1) -- (0,1,0) -- cycle;
+
+\draw [circle] (0,0,0)   -- (1,0,0)  -- (1,0,1)  -- (0,0,1)  -- cycle;
+\draw [circle] (0,1,0)   -- (1,1,0)  -- (1,1,1)  -- (0,1,1)  -- cycle;
+
+\draw [circle] (0,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,1,0)  node[draw, fill = black] (nodeA) {}  -- (0,1,0)  node[draw, fill = black] (nodeA) {}  -- cycle;
+\draw [circle] (0,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,1,1)  node[draw, fill = black] (nodeA) {}  -- (0,1,1)  node[draw, fill = black] (nodeA) {}  -- cycle;
+
+\end{tikzpicture} 
+
+\end{example}
+
+	\textbf{Итого:}
+	
+	$xyz$ ~--- это вершина $x = a, y = b, z = c$
+
+	$xy$ ~--- это ребро $x = a, y = b$ 	
+
+	$x$ ~--- это грань $x = a$ 	
+
+\textbf{Попробуем минимизировать ДНФ}
+
+\begin{example}
+
+	$\overline{x} \: \overline{y} \: \overline{z} \lor x \: \overline{y} \: \overline{z} \lor xy \: \overline{z}$
+	
+	Найти самый короткий ДНФ для данного выражения
+	
+	\textbf{Шаг 1: строим ТИ}
+	
+\begin{tikzpicture}[scale=3,line width=1.5mm]
+
+\draw [circle] (1,0,0) -- (1,0,1) -- (1,1,1) -- (1,1,0) -- cycle;
+\draw [circle] (0,0,0) -- (0,0,1) -- (0,1,1) -- (0,1,0) -- cycle;
+
+\draw [circle] (0,0,0)   -- (1,0,0)  -- (1,0,1)  -- (0,0,1)  -- cycle;
+\draw [circle] (0,1,0)   -- (1,1,0)  -- (1,1,1)  -- (0,1,1)  -- cycle;
+
+\draw [circle] (0,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,0,0)  node[draw, fill = red, red] (nodeA) {}  -- (1,1,0)  node[draw, fill = black] (nodeA) {}  -- (0,1,0)  node[draw, fill = black] (nodeA) {}  -- cycle;
+\draw [circle] (0,0,1)  node[draw, fill = red, red] (nodeA) {}  -- (1,0,1)  node[draw, fill = red, red] (nodeA) {}  -- (1,1,1)  node[draw, fill = black] (nodeA) {}  -- (0,1,1)  node[draw, fill = black] (nodeA) {}  -- cycle;
+
+\end{tikzpicture} 
+
+	$\overline{x} \: \overline{y} \: \overline{z} = (0, 0, 0)$
+	
+	$x \: \overline{y} \: \overline{z} = (1, 0, 0)$
+	
+	$xy \: \overline{z} = (1, 1, 0)$
+
+	\textbf{Шаг 2: упрощаем}
+	
+	Чтобы упростить имеет смысл рассмотреть 2 ребра:
+	
+	$(0, 0, 0) -- (1, 0, 0) = \overline{y} \: \overline{z}$
+
+	$(1, 0, 0) -- (1, 1, 0) = x \: \overline{z}$
+	
+	$\Rightarrow$ ДНФ $ = \overline{y} \: \overline{z} \lor x \: \overline{z} = \overline{x} \: \overline{y} \: \overline{z} \lor x \: \overline{z} = xy \: \overline{z} \lor \overline{y} \: \overline{z}$
+	
+	$\Rightarrow$ самое короткое ДНФ $ = \overline{y} \: \overline{z} \lor x \: \overline{z}$
+
+\end{example}
+
+\begin{example}
+
+	$\overline{x} \: \overline{y} \: \overline{z} \lor x \: \overline{y} \lor xy$
+
+\begin{tikzpicture}[scale=3,line width=1.5mm]
+
+\draw [circle] (1,0,0) -- (1,0,1) -- (1,1,1) -- (1,1,0) -- cycle;
+\draw [circle] (0,0,0) -- (0,0,1) -- (0,1,1) -- (0,1,0) -- cycle;
+
+\draw [circle] (0,0,0)   -- (1,0,0)  -- (1,0,1)  -- (0,0,1)  -- cycle;
+\draw [circle] (0,1,0)   -- (1,1,0)  -- (1,1,1)  -- (0,1,1)  -- cycle;
+
+\draw [circle] (0,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,0,0)  node[draw, fill = black] (nodeA) {}  -- (1,1,0)  node[draw, fill = black] (nodeA) {}  -- (0,1,0)  node[draw, fill = black] (nodeA) {}  -- cycle;
+\draw [circle] (0,0,1)  node[draw, fill = red, red] (nodeA) {}  -- (1,0,1)  node[draw, fill = black] (nodeA) {}  -- (1,1,1)  node[draw, fill = black] (nodeA) {}  -- (0,1,1)  node[draw, fill = black] (nodeA) {}  -- cycle;
+
+\draw [red] (1,1,1) -- (1,0,1);
+\draw [red] (1,1,0) -- (1,0,0);
+
+\end{tikzpicture} 
+
+	$\Rightarrow $ ДНФ $ = x \lor \overline{x} \: \overline{y} \: \overline{z} = x \lor \overline{y} \: \overline{z}$
+
+\end{example}
+
+\begin{remark}
+	Данный метод позволяет наглядно перебрать все ДНФ и найти минимальный
+	
+	С помощью алгебраических преобразований мы не сможем понять, что ответ самый оптимальный
+\end{remark}
+
+\begin{example}
+	Алгебраические преобразования
+	
+	$\overline{x} \: \overline{y} \: \overline{z} \lor x \: \overline{y} \: \overline{z} \lor xy \: \overline{z} = \overline{x} \: \overline{y} \: \overline{z} \lor x \: \overline{y} \: \overline{z} \lor x \: \overline{y} \: \overline{z} \lor xy \: \overline{z} = \overline{y} \: \overline{z} \lor x \: \overline{z}$
+	
+	Но тут непонятно, а вдруг можно сделать еще короче
+\end{example}
+
+\subsubsection{Двойственная функция}
+
+	Пусть есть логическая функция: $f = B^n \rightarrow B = \{0, 1\}$
+	
+	Двойственная функция: $f^* = B^n \rightarrow B = \{0, 1\}$
+	
+	$f^*(x_1, x_2, \dots, x_n) = \overline{f(\overline{x_1}, \overline{x_2}, \dots, \overline{x_n})}$
+
+\begin{remark}
+	Мир замены лжи на истину
+	
+	$$0 \leftrightarrow 1$$
+\end{remark}
+
+\begin{example}
+	$f(x, y) = x \lor y$
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			$x$ & $y$ & $f$ \\ \hline
+			0 & 0 & 0 \\ \hline
+			0 & 1 & 1 \\ \hline
+			1 & 0 & 1 \\ \hline
+			1 & 1 & 1 \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	Новый мир: $1 \rightarrow 0, 0 \rightarrow 1$
+
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			$x$ & $y$ & $f^*$ \\ \hline
+			1 & 1 & 1 \\ \hline
+			1 & 0 & 0 \\ \hline
+			0 & 1 & 0 \\ \hline
+			0 & 0 & 0 \\ \hline
+		\end{tabular}
+	\end{table}
+	
+	Получилось, что $(x \lor y)^* = xy$
+\end{example}
+
+\begin{example}
+	$(x \lor y)^* = \overline{\overline{x} \lor \overline{y}} = \overline{\overline{x}} \: \overline{\overline{y}} = xy$
+\end{example}
+
+\begin{example}
+	$(x + y)^* = \overline{\overline{x} + \overline{y}} = \overline{1 + x + 1 + y} = 1 + x + 1 + y + 1 = 1 + x + y = x \Leftrightarrow y$
+\end{example}
+
+\begin{remark}
+	$f^{**}(x_1, x_2 \dots x_n) = \overline{f^*(\overline{x_1}, \overline{x_2} \dots \overline{x_n})} = \overline{\overline{f(x_1, x_2 \dots x_n)}} = f(x_1, x_2 \dots x_n)$
+\end{remark}
+
+\begin{corollary}
+	$$(xy)^* = x \lor y$$
+	
+	$$(x \Leftrightarrow y)^* = x + y$$
+\end{corollary}
+
+	\textbf{Теорема о композиции:}
+	
+	$f = f_0(f_1(x_1, \dots x_n), f_2(x_1, \dots x_n), \dots f_m(x_1, \dots x_n))$
+	
+	$f_i$ ~--- это функции от n переменных $(B^n \rightarrow B) (i = 1 \dots n)$
+	
+	$f_0 = B^m \rightarrow B$
+	
+	Тогда $f^*(x_1, \dots x_n) = f^{*}_{0}(f^{*}_{1}(x_1, \dots x_n), f^{*}_{2}(x_1, \dots x_n), \dots f^{*}_{m}(x_1, \dots x_n))$
+	
+	\textbf{Доказательство:}
+	
+	$f^* = \overline{f(\overline{x_1}, \dots \overline{x_n})} =  \overline{f_0(f_1(\overline{x_1}, \dots \overline{x_n}), f_2(\overline{x_1, \dots \overline{x_n}}) \dots f_m(\overline{x_1}, \dots \overline{x_n}))} = f_0^*(\overline{f_1(\overline{x_1, \dots \overline{x_n}}), \overline{f_2(\overline{x_1}, \dots \overline{x_n})}, \dots \overline{f_m(\overline{x_1}, \dots \overline{x_n})}}) $
+
+\begin{corollary}
+	Если есть $f(x_1, \dots x_n)$ ~--- записано, как логическое выражение с $\cdot, \: \lor, \: \neg, \: +, \: \Leftrightarrow$, то $f^*$ ~--- также выражение, но связки заменяются на двойственные узлы
+	
+	$$\lor \leftrightarrow *$$
+
+	$$+ \leftrightarrow \Leftrightarrow$$
+	
+	$$\neg \leftrightarrow \neg$$
+	
+	так как $(\overline{x})^* = \overline{x}$
+\end{corollary}
+
+\begin{example}
+
+	$$f(x, y, z) = \overline{x \lor \overline{y} \: z} \Leftrightarrow (x + y + z)$$
+	
+	$$f^*(x, y, z) = (\overline{x \cdot (\overline{y} \: z)}) + (x \Leftrightarrow y \Leftrightarrow z)$$
+\end{example}
+
+\begin{example}
+
+	$$f(x_1, \dots x_n) = 1$$
+	
+	$$\Rightarrow f^*(x_1, \dots x_n) = \overline{1} = 0$$
+	
+	$$1^* = 0; 0^* = 1$$
+\end{example}
+
+\subsubsection{Конъюнктивно-нормальная форма (КНФ)}
+
+\begin{definition}
+	Конъюнктивно-нормальная форма ~--- еще одна нормальная форма, похожая на ДНФ
+\end{definition}
+
+\begin{definition}
+	Литерал ~--- это как и раньше, переменные или отрицательные переменные
+	
+	$$x, y, \overline{x}, \: \overline{y}$$
+\end{definition}
+
+\begin{definition}
+	Дизъюнкт ~--- дизъюнкция литералов
+	
+	$$x \lor y; \: x \lor y \lor \overline{z}; \: x \lor \overline{z}; \: \overline{x}$$
+	
+	$$\cancel{xy}, \cancel{x \lor yz}$$
+\end{definition}
+
+\begin{definition}
+	КНФ ~--- это конъюнкция нескольких дизъюнктов
+	
+	$$(x \lor y)(y \lor \overline{z});$$
+	
+	$$(x \lor \overline{y} \lor z)(\overline{y} \lor \overline{z})(\overline{x})$$
+	
+	$$\cancel{xy \lor z}$$
+	
+	$$x \lor y \lor z$$ ~--- 1 дизъюнкт
+	
+	$$xyz$$ ~--- 3 дизъюнкта
+\end{definition}
 
 \end{sloppypar}
 
