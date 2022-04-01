@@ -1370,4 +1370,64 @@ $\Rightarrow$ данный ДНФ не может быть равным 0
 
 \end{sloppypar}
 
+	\begin{definition}
+		У любой логической функции есть КНФ, её можно построить по таблице истинности
+		\end{definition}
+
+	\textbf{Доказательство}
+
+		Заметим,что если вычислить (КНФ$)^{*}$ (двойственную к КНФ), то получим ДНФ
+
+	\begin{example}
+	$[(x \vee y \vee z)(x \vee \bar{y})(\bar{y} \vee \bar{z})]^{*} = (xyz)\vee(x\bar{y})\vee(\bay{y}\bar{z})$
+		И наоборот (ДНФ$)^{*} = $ КНФ
+		\end{example}
+
+	Итого, чтобы получить КНФ для функции f, надо построить ДНФ для $f^{*}$. ДНФ для $f^{*}$
+	- существует.
+
+	\begin{example}
+		f(x,y,z) = xy $\Leftrightarrow$ z
+
+		\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		$x$ & $y$ & $z$ & $xy$ & $f$ & $f^{*}$ \\ \hline
+		0 & 0 & 0 & 0   & 1   & 0   \\ \hline
+		0 & 0 & 1 & 0   & 0   & 1   \\ \hline
+		0 & 1 & 0 & 0   & 1   & 1   \\ \hline
+		0 & 1 & 1 & 0   & 0   & 0   \\ \hline
+		1 & 0 & 0 & 0   & 1   & 1   \\ \hline
+		1 & 0 & 1 & 0   & 0   & 0   \\ \hline
+		1 & 1 & 0 & 1   & 0   & 1   \\ \hline
+		1 & 1 & 1 & 1   & 1   & 0   \\ \hline
+	\end{tabular}
+
+\end{table}
+
+
+			Выпишем значения xyz из строчек, где $f^{*} = 1$
+
+			$\bar{x}\bar{y}z$ \quad $x\bar{y}\bar{z}$ \quad $\bar{x}y\bar{z}$ \quad $xy\bar{z}$
+
+
+		\end{example}
+
+	Вспомним определение $f^{*}(x,y,z) = \overline{f(\bar{x},\bar{y},\bar{z})}$
+
+	$f^{*}(0,0,0) = \overline{f(1,1,1)}$
+
+	Итого: $f^{*}$ = $\bar{x}\bar{y}z \vee \bar{x}y\bar{z} \vee x\bar{y}\bar{z} \vee xy\bar{z}$
+
+	$f^{*}(0,0,1) = \overline{f(1,1,0)}$
+
+	$f^{*}(0,1,0) = \overline{f(1,0,1)}$
+
+	По теореме о композиции
+
+	$f = (\bar{x} \vee \bar{y} \vee z)(\bar{x} \vee y \vee \bar{z})(x \vee \bar{y} \vee \bar{z})(x \vee y \vee \bar{z})$
+
+	Получение КНФ по таблице истинности без двойственной функции
+
 \end{document}
