@@ -1380,7 +1380,7 @@ $\Rightarrow$ данный ДНФ не может быть равным 0
 		Заметим,что если вычислить (КНФ$)^{*}$ (двойственную к КНФ), то получим ДНФ
 
 	\begin{example}
-	$[(x \vee y \vee z)(x \vee \bar{y})(\bar{y} \vee \bar{z})]^{*} = (xyz)\vee(x\bar{y})\vee(\bay{y}\bar{z})$
+	$[(x \vee y \vee z)(x \vee \bar{y})(\bar{y} \vee \bar{z})]^{*} = (xyz)\vee(x\bar{y})\vee(\bar{y}\bar{z})$
 
 		И наоборот (ДНФ$)^{*} = $ КНФ
 		\end{example}
@@ -1432,7 +1432,7 @@ $\Rightarrow$ данный ДНФ не может быть равным 0
 
 	Получение КНФ по таблице истинности без двойственной функции
 
-f(x,y,z) = xy \Leftrightarrow z
+f(x,y,z) = xy $\Leftrightarrow$ z
 
 	\begin{table}[h!]
 	\centering
@@ -1483,9 +1483,9 @@ f(x,y,z) = xy \Leftrightarrow z
 \end{table}
 
 
-	Нули в: $x \lor y \qquad \bar{x} \lor \bar{y}
+	Нули в: $x \lor y \qquad \bar{x} \lor \bar{y}$
 
-	 f = (x\lor y)(\bar{x} \lor \bar{y})$
+	$f = (x\lor y)(\bar{x} \lor \bar{y})$
 
 
 
@@ -1549,22 +1549,17 @@ f(x,y,z) = xy \Leftrightarrow z
 
 		если есть 2 зайца, то один из конъюнктов: = 1
 
-		$x_{11}x_{12} \lor x_{11}x_{13} \lor x_{12}x_{13} \longleftarrow$ в кл $1 \leqslant 1$ зайца
+		$\overline{x_{11}x_{12} \lor x_{11}x_{13} \lor x_{12}x_{13}} \longleftarrow$ в кл $1 \leqslant 1$ зайца
 
-		$x_{21}x_{22} \lor x_{21}x_{23} \lor x_{22}x_{23} \longleftarrow$ в кл $2 \leqslant 1$ зайца
+		$\overline{x_{21}x_{22} \lor x_{21}x_{23} \lor x_{22}x_{23}} \longleftarrow$ в кл $2 \leqslant 1$ зайца
 
 		Соединяем все утверждения:
-
-		$(x_{11} + x_{21})(x_{12} + x_{22})(x_{13} + x_{23})(x_{11}x_{12} \lor x_{11}x_{13} \lor x_{12}x_{13})$ % need check
-
-		Первые 3 слогаемых $(x_{11} \lor x_{21})(\bar{x}_{11} \lor \bar{x}_{21})(x_{12} \lor x_{22})
-		(\bar{x}_{12} \lor \bar{x}_{22})(x_{13} \lor x_{23})(\bar{x}_{13} \lor \bar{x}_{23})$
-
-		$(x_{21}x_{22} \lor x_{21}x_{23} \lor x_{22}x_{23}) = 0$
-
-		$(x_{11} \lor x_{21})(\bar{x}_{11} \lor \bar{x}_{21})(x_{12} \lor x_{22})(\bar{x}_{12} \lor \bar{x}_{22})(x_{13} \lor x_{23})(\bar{x}_{13} \lor \bar{x}_{23})
-		(\bar{x}_{11} \lor \bar{x}_{12})(\bar{x}_{11} \lor \bar{x}_{13})(x_{12} \lor x_{13})(\bar{x}_{21} \lor \bar{x}_{22})
-		(\bar{x}_{21} \lor \bar{x}_{23})(\bar{x}_{22} \lor \bar{x}_{23})\longleftarrow$
+		
+	$(x_{11} + x_{21})(x_{12} + x_{22})(x_{13} + x_{23})(\overline{x_{11}x_{12} \lor x_{11}x_{13} \lor x_{12}x_{13}})(\overline{x_{21}x_{22} \lor x_{21}x_{23} \lor x_{22}x_{23}}) = 0$ всегда из принципа Дерихле
+	 
+	 $(x_{11} \lor x_{21})(\overline{x_{11}} \lor \overline{x_{21}})(x_{12} \lor x_{22})(\overline{x_{12}} \lor \overline{x_{22}})(x_{13} \lor x_{23})(\overline{x_{13}} \lor \overline{x_{23}})(\overline{x_{11}} \lor \overline{x_{12}})(\overline{x_{11}} \lor \overline{x_{13}})(x_{12} \lor x_{13})(\overline{x_{21}} \lor \overline{x_{22}})(\overline{x_{21}} \lor \overline{x_{23}})(\overline{x_{22}} \lor \overline{x_{23}})$
+	
+		$\longleftarrow$
 		Берем программу, которая решает КНФ задачу выполнимости. Она скажет - невозможно.
 
 		\end{example}
@@ -1580,15 +1575,15 @@ f(x,y,z) = xy \Leftrightarrow z
 	\end{definition}
 
 	\begin{example}
-		Класс функций от двух переменных
 
-		$K_{1} = $ класс функций: $f(x,y) = f(y,x)$
+		$K_{1} = $ класс функций: от двух переменных
+		$K_{2} = $ класс функций такой, что $f(x,y) = f(y,x)$
 
 		$f(x,y) = x \lor y \in K_{1}, \in K_{2}$
 
 		$g(x,y) = x \Rightarrow y \in K_{1} \notin K_{2}$
 
-		$K_{3}:$ класс функций $f(x1...) = f(0, ...)$
+		$K_{3}:$ класс функций $f(x,...) = f(\overline{x}, ...)$
 		функции, которые не зависят от первой переменной
 
 		$f(x,y,z) = y \Rightarrow z \in K_{3}$
@@ -1597,7 +1592,7 @@ f(x,y,z) = xy \Leftrightarrow z
 
 		$f(x,y,z) = x\bar{x} \lor y \lor z \in K_{3}$ \quad $(x \bar{x})$
 
-		$K_{4}: \{f(x,y) = x \lor y$  $ g(x,y) = x \Rightarrow y\}$
+		$K_{4}: \{f(x,y) = x \lor y;$  $ g(x,y) = x \Rightarrow y\}$
 
 		\end{example}
 
@@ -1630,7 +1625,7 @@ f(x,y,z) = xy \Leftrightarrow z
 		\path(first_diag) edge[->] (4);
 	\end{tikzpicture}
 
-			$K^{*}$ ~--- замыкание класса - это класс состоящий из всех композиций ф.к
+			$K^{*}$ ~--- замыкание класса - это класс состоящий из всех композиций функций из K
 
 
 			\frame{$f_{1}(f_{2})(f_{1}(x,y),y,z),z)$} ~--- композиция
@@ -1664,10 +1659,10 @@ f(x,y,z) = xy \Leftrightarrow z
 		\end{definition}
 		\begin{example}
 
-			$K = \{\bar{x}, x \lor y \}$, где $f(x) = \bar{x}$, $x \lor y = y(x\lor y)$
+			$K = \{\bar{x}, x \lor y \}$, где $f(x) = \bar{x}$, $g(x, y) = x \lor y$
 		\end{example}
 		
-		$xy = \overline{\bar{x}\bar{y}} = x \lor y
+		$xy = \overline{\overline{xy}} = \overline{\overline{x} \lor \overline{y}}
 		 = f(g(f(x),f(y)))$  % need check
 
 		Значит $K^{*}$ ~--- тоже полный
