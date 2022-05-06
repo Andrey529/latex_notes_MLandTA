@@ -12,7 +12,7 @@
 \usepackage{pgfplots}
 
 \usepackage{cancel}
-\usepackage{amsmath} % для зачеркивания слова
+\usepackage{amsmath}
 
 \title{Математическая логика и теория алгоритмов}
 \lecturer{Поcов Илья Александрович}
@@ -702,7 +702,7 @@ $(x\Rightarrow y)(y\Rightarrow x) = x \Rightarrow y$
 	$\overline{xy} \neq \overline{x} \cdot \overline{y} = \overline{x} \: \overline{y}$
 \end{remark}
 
-\textbf{Докзательство формул через таблицу истинности:}
+\textbf{Докозательство формул через таблицу истинности:}
 
 \begin{table}[h!]
 	\centering	
@@ -1335,7 +1335,7 @@ $\Rightarrow$ данный ДНФ не может быть равным 0
 	$$1^* = 0; 0^* = 1$$
 \end{example}
 
-\subsubsection{Конъюнктивно-нормальная форма (КНФ)}
+\subsubsection{Конъюнктивно-нормальная форма КНФ}
 
 \begin{definition}
 	Конъюнктивно-нормальная форма ~--- еще одна нормальная форма, похожая на ДНФ
@@ -1385,8 +1385,8 @@ $\Rightarrow$ данный ДНФ не может быть равным 0
 		И наоборот (ДНФ$)^{*} = $ КНФ
 		\end{example}
 
-	Итого, чтобы получить КНФ для функции f, надо построить ДНФ для $f^{*}$. ДНФ для $f^{*}$
-	- существует.
+	Итого, чтобы получить КНФ для функции f, надо построить двойственную функцию
+	к ДНФ это функции. Отсюда следует, что КНФ всегда существует
 
 	\begin{example}
 		f(x,y,z) = xy $\Leftrightarrow$ z
@@ -1465,16 +1465,12 @@ f(x,y,z) = xy \Leftrightarrow z
 
 	- строки с 0, 0 $\leftrightarrow xyz$
 
-	\qquad \qquad \qquad 1 $\leftrightarrow$ \bar{x}\bar{y}\bar{z}
+	\qquad \qquad \qquad 1 $\leftrightarrow \bar{x}\bar{y}\bar{z}$
 
 	\begin{example}
-	x+y
+	f = x+y
 
-	x \lor y
-
-	$\bar{x} \lor \bar{y} (x\lor y)(\bar{x} \lor \bar{y})$
-
-		\begin{table}[h!]
+	\begin{table}[h!]
 	\centering
 	\begin{tabular}{|c|c|c|}
 		\hline
@@ -1486,6 +1482,13 @@ f(x,y,z) = xy \Leftrightarrow z
 	\end{tabular}
 \end{table}
 
+
+	Нули в: $x \lor y \qquad \bar{x} \lor \bar{y}
+
+	 f = (x\lor y)(\bar{x} \lor \bar{y})$
+
+
+
 \end{example}
 
 	\begin{remark}
@@ -1493,7 +1496,7 @@ f(x,y,z) = xy \Leftrightarrow z
 
 		Вопрос: может ли значение быть = 1
 
-		- не известно решений, принципиально эффектиный полного перебора значений
+		- не известно решений, принципиально эффективней полного перебора значений
 
 		\end{remark}
 
@@ -1505,6 +1508,9 @@ f(x,y,z) = xy \Leftrightarrow z
 		y = 1 \qquad подходит
 
 		z = 0
+
+		Cледовательно эта формула выполнима при таком наборе
+
 
 	\end{example}
 
@@ -1519,7 +1525,7 @@ f(x,y,z) = xy \Leftrightarrow z
 
 		\qquad \qquad \quad j = 1 или 2 или 3 заяц
 
-		Попробуйем записать, что в каждой клетке $\leqslant$ 1 зайца
+		Попробуем записать, что в каждой клетке $\leqslant$ 1 зайца
 
 		а) каждый заяц ровно в одной клетке
 
@@ -1556,8 +1562,9 @@ f(x,y,z) = xy \Leftrightarrow z
 
 		$(x_{21}x_{22} \lor x_{21}x_{23} \lor x_{22}x_{23}) = 0$
 
-		$(\bar{x}_{11} \lor \bar{x}_{13})(\bar{x}_{12} \lor \bar{x}_{13})(\bar{x}_{21} \lor \bar{x}_{22})
-		(\bar{x}_{21} \lor \bar{x}_{23})(\bar{x}_{22} \lor \bar{x}_{23}) \longleftarrow$
+		$(x_{11} \lor x_{21})(\bar{x}_{11} \lor \bar{x}_{21})(x_{12} \lor x_{22})(\bar{x}_{12} \lor \bar{x}_{22})(x_{13} \lor x_{23})(\bar{x}_{13} \lor \bar{x}_{23})
+		(\bar{x}_{11} \lor \bar{x}_{12})(\bar{x}_{11} \lor \bar{x}_{13})(x_{12} \lor x_{13})(\bar{x}_{21} \lor \bar{x}_{22})
+		(\bar{x}_{21} \lor \bar{x}_{23})(\bar{x}_{22} \lor \bar{x}_{23})\longleftarrow$
 		Берем программу, которая решает КНФ задачу выполнимости. Она скажет - невозможно.
 
 		\end{example}
@@ -1636,11 +1643,11 @@ f(x,y,z) = xy \Leftrightarrow z
 		$K^{*} = \{ f(), g(f()), g(g(f())), g(g(g(f())))\}$
 \end{example}
 	\begin{example}
-		$K^{*} = \{\bar{x},0,1,x\}$ возьмем класс только ищ отрицательных
+		$K = \{\bar{x}\}$ возьмем класс только из отрицательных
 
 		$K^{*} = \{ \bar{x}, x\}$
 
-		$K^{*} = \{ g(x), g((g(x))), g(g(g(x \dots 1, \dots )))\}$
+		$K = \{ g(x), g((g(x))), g(g(g(x \dots 1, \dots )))\}$
 \end{example}
 	\begin{example}
 		$K^{*}=\{ \bar{x}$,$ x \lor y$,$ xy \}$  $\quad K^{*} = \{ $,$ \dots$,$ \forall$, функция $\}$
@@ -1660,26 +1667,10 @@ f(x,y,z) = xy \Leftrightarrow z
 			$K = \{\bar{x}, x \lor y \}$, где $f(x) = \bar{x}$, $x \lor y = y(x\lor y)$
 		\end{example}
 		
-		$xy = \overline{\bar{x}\bar{y}} = \overline{\bar{x} \lor \bar{y}} 
+		$xy = \overline{\bar{x}\bar{y}} = x \lor y
 		 = f(g(f(x),f(y)))$  % need check
 
 		Значит $K^{*}$ ~--- тоже полный
-		
-%		\begin{example}
-%			$f(x,y) g(x,y)$
-%
-%			$K_{5} = \{ xy, x+y\}$
-%
-%			Заметим $f(0,0) = 0$ , $g(0,0) = 0$
-%
-%			Когда сделаем композицию $g(g(f()))..\dots$
-%
-%			Вычисляя, все функции будут равны 0
-%
-%			$h(0,0,0) \dots $
-%
-%
-%
-%		\end{example}
+
 
 \end{document}
