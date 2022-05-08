@@ -1674,7 +1674,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	Свойства замыкания:
 
-	1. $K_{1} \subset K_{2}$, тогда $K^{*} \subset K_{2}^{*}$
+	1. $K_{1} \subset K_{2}$, тогда $K_{1}^{*} \subset K_{2}^{*}$
 
 	\textbf{Докозательство:}
 
@@ -1689,36 +1689,40 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 	 \subset K_{2}^{*} \Rightarrow K_{2}^{*} = \alpha
 	$
 
-	3. Пусть $K_{1}$, $K_{2}$ ~~- замкнутое, тогда $K_{1} \wedge K_{2}$ ~~- тоже
+	3. Пусть $K_{1}$, $K_{2}$ ~~- замкнутое, тогда $K_{1} \cap K_{2}$ ~~- тоже замкнутые
 
 	\textbf{Докозательство:}
 
-	$(K_{1} \wedge K_{2}) \Rightarrow f $ ~~- композиция
+	Пусть есть $f = (K_{1} \cap K_{2})^{*} $ ~~- композиция
 
-	Пусть $f \in (K_{1} \wedge K_{2})$
+	$f_i \in (K_{1} \cap K_{2})$
 
-	а) $\Rightarrow f $ ~~- композиция $\Rightarrow f \in K_{1}^{*}$
+	а) $\Rightarrow f_i $ ~~- композиция $ f_i = K_1 \Rightarrow f \in K_{1}^{*}$
 
-	б) $\Rightarrow$ - композиция $\Rightarrow f \in K_{2}^{*}$
+	б) $\Rightarrow f_i $ - композиция $f_i = K_2 \Rightarrow f \in K_{2}^{*}$
 
-	Из а и б следует, что $ f \in K_{1}^{*} \wedge K_{2}^{*} = K_{1} \wedge K_{2}$
+	Из а и б следует, что $ f \in K_{1}^{*} \cap K_{2}^{*} = K_{1} \cap K_{2}$
 
-	Итог: $f \in (K_{1} \wedge K_{2})^{*} \Rightarrow f \in K_{1} \wedge K_{2} \Rightarrow
-	(K_{1} \wedge K_{2})^{*} \subset K_{1} \wedge K_{2}$, $K_{1} \wedge K_{2} \subset (K_{1}
-	\wedge K_{2})^{*} \Rightarrow K_{1} \wedge K_{2} = (K_{1} \wedge K_{2})^{*}
-	\Rightarrow K_{1} \wedge K_{2} $ - замкнут
+	Итог: $f \in (K_{1} \cap K_{2})^{*} \Rightarrow f \in K_{1} \cap K_{2}$ 
+
+	$\Rightarrow	(K_{1} \cap K_{2})^{*} \subset K_{1} \cap K_{2}$, 
+	по $K_{1} \cap K_{2} \subset (K_{1}
+	\cap K_{2})^{*}$ 
+	
+	$\Rightarrow K_{1} \cap K_{2} = (K_{1} \cap K_{2})^{*}$
+	
+	$\Rightarrow K_{1} \cap K_{2} $ - замкнут
 
 	\begin{remark}
-		$K_{1}K_{2}$ - замкнуты $\Rightarrow K_{1} \lor K_{2} $ - замкнуты
+		$K_{1}$ и $K_{2}$ - замкнутые $\Rightarrow K_{1} \cup K_{2} $ - замкнутый
 		\end{remark}
 
 	4. $K^{*} = K^{**}$ для любого класса функций
 
-	Примеры замкнутых классов:
+	\subsubsection{Примеры замкнутых классов}
 
-	1. $T_{0}$ - класс функций, "сохраняющих ноль" $f \in T_{0} \Rightarrow$  если
-	$f(0,....0) = 0
-	$
+	1. $T_{0}$ - класс функций, "сохраняющих ноль" $f \in T_{0} \Leftrightarrow$  если
+	$f(0,....0) = 0$
 
 	$x*y \in T_{0}$
 
@@ -1742,7 +1746,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	f - комп $f_{i}$, $f_{i} \in T_{0}$
 
-	$f_{1}(f_{2}(...)f_{3}(f_{1}(...)),...)$ - композиция
+	$f_{1}(f_{2}(...)f_{3}(f_{4}(...)),...)$ - композиция
 
 	подставим все 0
 
@@ -1786,13 +1790,13 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 		$f \in \frame{\&}$, если f можно записать как конъюнкцию нескольких переменных
 
-		$f(x,y,z,t) = yz$
+		$f(x,y,z) = yz$
 
 		$g(x,y,z) = xyz$
 
 		$h(x,y,z) = xz$
 
-		$z(x,y,z) = z$
+		$i(x,y,z) = z$
 
 		0
 
@@ -1806,12 +1810,12 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 		Композиция $f_{i} \in \frame{\&}$
 
-		$f_1(...,\frame{...},...,\frame{...}) = $ арг2 * арг4 = подаргумент1* подаргумент2* ... * подаргументT =
-		пер * пер * пер *пер... (произвольная переременная)
+		$f_1(...,\frame{...},...,\frame{...}) = $ арг2 * арг4 = подаргумент1* подаргумент2* ... * подаргумент =
+		пер * пер * пер * пер... (произвольная переременная)
 
 		пер может быть 0 или 1
 
-		\begin{proposition}%поменять на утверждение
+		\begin{proposition}
 			$\frame{\&} = \{\&,0,1\}^{*}$
 
 			по определению замыкания
@@ -1824,7 +1828,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 			\end{proposition}
 
-		4. \frame{V} - дизъюнкция переменных 0, 1
+		4. \frame{V} - дизъюнкция переменных и 0, 1
 
 		\frame{V} = $\{V,0,1\}^{*}$
 
@@ -1841,7 +1845,8 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 		\textbf{Докозательство 2: }
 
-		$\frame{V} = \{V,0,1\}^{*} \Rightarrow \frame{V}^{*} = \{V,0,1\}^{*} = $ свойства замыкания
+		$\frame{V} = \{V,0,1\}^{*}$ 
+		$\Rightarrow \frame{V}^{*} = \{V,0,1\}^{**} = \{V,0,1\}^{*} = \frame{V}$ свойства замыкания
 
 		\end{example}
 
@@ -1862,7 +1867,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	если класс замкнут он станет замкнутым
 
-	5. Класс u (unit) : 0,1,$f(x,...x_{n}) = x_{i}/x{i}$
+	5. Класс u (unit) : 0,1,$f(x,...x_{n}) = x_{i}$ или  $\overline{x_{i}}$
 
 	$f(x,y,z) = \bar{z}$
 
@@ -1912,7 +1917,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	\textbf{Докозательство: } $ x * y$ имеет многочлены Жегалкина $x*y$
 
-	он единственный $\Rightarrow $ линейного многочлена Жегалкина %do
+	он единственный $\Rightarrow $ не существует линейного многочлена Жегалкина %do
 
 	8. S - самодвойствейнные функции
 
@@ -1955,7 +1960,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 \end{tikzpicture}
 
-	$vote(x,y,z) \in \math{S}$?
+	$vote(x,y,z) \in S$?
 
 	$(xy \lor xz \lor yz)^{*} = (x \lor y)(x \lor z)(y \lor z) =? xy \lor xz \lor yz$
 
@@ -1990,7 +1995,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 		S - замкнут
 
-		\sqsupset $f \in S^{*} f = $композиция $f_{i}$
+		$\sqsupset f \in S^{*} f = $композиция $f_{i} \in S$
 
 		$f = f_{i}(f_{2}(...),f_{3}(...),f_{4}(...))$
 
@@ -2023,10 +2028,16 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	$f^{*} = f_{1}^{*}(f_{2}^{*}(...),  ,f_{n}^{*}(...))$ - теория о композиции
 
-	по $f_{i} \in S \Leftarrow f_{i}^{x} = f_{i}$
+	но $f_{i} \in S \Rightarrow f_{i}^{*} = f_{i}$
 
-	$= f_{i}(f_{2}(...),...f_{n}(...))$
+	$= f_{i}(f_{2}(...),...f_{n}(...)) = f$
 
-	$= f$ т.е $f^{*} = f \Leftarrow f \in S$
+	т.е $f^{*} = f \Rightarrow f \in S$
+	
+	9. Монотонные функции
+	
+	$f(x_1, \dots, x_n) \in M$, если $\forall i \quad x_i \geq y_i$
+	
+	$\Rightarrow f(x_1, \dots, x_n) \geq f(y_1, \dots, y_n)$
 
 \end{document}
