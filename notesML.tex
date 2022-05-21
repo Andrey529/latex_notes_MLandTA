@@ -2039,5 +2039,378 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 	$f(x_1, \dots, x_n) \in M$, если $\forall i \quad x_i \geq y_i$
 	
 	$\Rightarrow f(x_1, \dots, x_n) \geq f(y_1, \dots, y_n)$
+	
+	\textbf{Примеры:}
+	\begin{enumerate}
+		\item{
+		$f_1(x) = \overline{x} \qquad f_1 \notin M$, так как $f_1(1) = 0, f(0) = 1$.
+		$1$ в аргументе функции $\geq 0$, но $0 < 1$ в значение функции
+		
+		}
+		\item{
+		$f_2(x, y) = x \Rightarrow y \qquad f_2 \notin M$, так как $f_2(1,0) = 0, f(0,0) = 1$.
+		$1,0$ в аргументе функции $\geq 0,0$, но $0 < 1$ в значение функции		
+		}	
+		\item{
+		$f_3(x, y) = x + y \qquad f_3 \notin M$, так как $f_3(1,1) = 0, f(1,0) = 1$.
+		$1,1$ в аргументе функции $\geq 1,0$, но $0 < 1$ в значение функции		
+		}	
+		\item $f_4(x, y) \in M$
+		\item $f_5(x, y) \in M$
+		\item $f_6(x, y, z) = xy \lor xz \lor yz \quad \in M$ ~--- функция голосования
+	\end{enumerate}
+
+	\textbf{Наглядный способ проверки монотонности}
+	
+	Функция монотонна, когда все стрелки:
+	\begin{enumerate}
+		\item из 0 в 0
+		\item из 0 в 1
+		\item из 1 в 1
+	\end{enumerate}		
+
+\begin{example}
+	$x * y$
+	
+	Данная функция монотонна 
+	
+\begin{tikzpicture}[scale=3,line width=1.5mm, ->]
+\draw (0, 0) node [left] {\Large $0$} -- (0, 1.5) node [right] {\Large $y$};
+\draw (0, 0) -- (0, 1) node [left] {\Large $0$};
+\draw (0, 0) -- (1, 0) node [below] {\Large $0$};
+\draw (0, 0) -- (1.5, 0) node [above] {\Large $x$};
+\draw (0, 1) -- (1, 1) node [above] {\Large $1$};
+\draw (1, 0) -- (1, 1);
+\end{tikzpicture} 
+\end{example}
+
+\begin{example}
+	$x \lor y$
+	
+	Данная функция тоже монотонна 
+	
+\begin{tikzpicture}[scale=3,line width=1.5mm, ->]
+\draw (0, 0) node [left] {\Large $0$} -- (0, 1.5) node [right] {\Large $y$};
+\draw (0, 0) -- (0, 1) node [left] {\Large $1$};
+\draw (0, 0) -- (1, 0) node [below] {\Large $1$};
+\draw (0, 0) -- (1.5, 0) node [above] {\Large $x$};
+\draw (0, 1) -- (1, 1) node [above] {\Large $1$};
+\draw (1, 0) -- (1, 1);
+\end{tikzpicture} 
+\end{example}
+
+\begin{proposition}
+	$M$ ~-- замкнут
+	
+	То есть если $f_i$ ~-- мотонна, то $f(x_1, \dots x_n) = f_1(f_2(\dots) \dots f_m(\dots))$
+	
+	$f(y_1, \dots y_n) = f_1(f_2(\dots) \dots f_m(\dots))$
+	
+	$x_1 \dots x_n \geq y_1 \dots y_n$
+	
+	То где-то в глубине $x_i$ будут $\geq y_i \Rightarrow$ внутри будут получаться значения функции $f_i(x \dots) \geq f_i(y \dots)$
+\end{proposition}
+
+\begin{remark}
+	Классы из примеров выше все неполные
+\end{remark}
+
+\begin{example}
+	$L = L^* \quad x \cdot y$
+	
+	Всегда были примеры функций не из классов
+	
+	$xy \notin L$
+	
+	$xy \notin S$
+	
+	$\overline{x} \notin T_0$
+	
+	$\overline{x} \notin T_1$
+	
+	$\overline{x} \notin M$
+\end{example}
+
+\subsubsection{Теорема Поста}
+
+\begin{theorem}
+	\textbf{Поста}
+
+	(Позволяет понять, полный класс или нет)
+	
+	$K$ ~-- полный тогда и только тогда, когда
+	
+	$\exists f_1 \in K: \quad f_1 \notin T_0$	
+	
+	$\exists f_2 \in K: \quad f_2 \notin T_1$
+
+	$\exists f_3 \in K: \quad f_3 \notin L$
+
+	$\exists f_4 \in K: \quad f_4 \notin M$
+
+	$\exists f_5 \in K: \quad f_5 \notin S$
+\end{theorem}
+
+\begin{example}
+	$K = \{ \overline{x}; x + y \}$
+	
+	$\overline{x} \notin T_0, T_1$
+	
+	но $\overline{x} \in L$ и $x + y \in L \Rightarrow$
+	
+	$K$ ~-- не полный 
+\end{example}
+
+\begin{example}
+	$K = \{ \overline{x}; x \lor y \}$
+	
+	$\overline{x} \notin T_0, T_1, M$
+	
+	$\overline{x} \in S, L \quad $ но $x \lor y \notin L, S \Rightarrow$
+		
+	$K$ ~-- полный по теореме Поста
+\end{example}
+
+	\textbf{Доказательство в одну сторону:}
+	
+	$\Rightarrow$ если $K$ полный, от противного
+	
+	??????????????????? Пусть все $f \in K$ отличе, что
+	$f \in T_0$
+
+	$ \Rightarrow K \subset T_0$ 
+
+	$\Rightarrow K^* \subset T^*_0$ 
+
+	$\Rightarrow K^* \subset T_0 \nleq \alpha$, где $\alpha$ ~-- все функции
+	
+	$\Rightarrow \leq \alpha$
+	
+	$???$	
+
+	\textbf{Доказательство в другую сторону:}
+	
+	Будем выражать через $f_1; f_2; f_3; f_4; f_5$ все другие возможные ???????
+	
+	Достаточно будет выразить только $\{ \overline{x}, x \cdot y\}$ (тогда есть $x \lor y = \overline{\overline{x} \cdot \overline{y}}$)
+	
+	$\Rightarrow$ есть все ДНФ.
+	
+	\textbf{Шаг 1:}
+	Давайте выразим 0, 1, $\overline{x}$
+	
+	Берем $f_1(x_1 \dots x_n) = $
+	$\left[ 
+  		\begin{gathered} 
+    			1, x = 0 (f_1 \notin T_0) \hfill 
+        \\ 
+        		0 \: or \: 1; x = 1 \hfill 
+        \\ 
+	  	\end{gathered} 
+	\right.$
+	$ = 0$ или $\overline{x}$
+	
+	$f_2(x_1, x_2 \dots x_n) \notin T_1 = $
+	$\left[ 
+  		\begin{gathered} 
+    			0 \: or \: 1, x = 0 \hfill 
+        \\ 
+        		0; x = 1 \hfill 
+        \\ 
+	  	\end{gathered} 
+	\right.$
+	$ = \overline{x}$ или $0$
+	
+	\textbf{Пояснение:}
+	
+	$f(x, y, z) = x \Rightarrow yz \quad f(x, x, x) = 1$
+	
+	$f(0, 0, 0) = 1, f \notin T_0$
+	
+	????
+	
+	
+	????
+	
+	$f_4(x, y, z, t) = xy + zt \notin M$
+	
+	$f_4(1, 1, 1, 1) = 0 \quad f_4(1, 0, 1, 1) = 1$
+	
+	$1, 1, 1, 1 \geq 1, 0, 1, 1$
+	
+	$\Rightarrow f_4(1, x, 1, 1) = $
+	$\left[ 
+  		\begin{gathered} 
+    			1, x = 0 \hfill 
+        \\ 
+        		0; x = 1 \hfill 
+        \\ 
+	  	\end{gathered} 
+	\right.$
+	$ = \overline{x}$
+	
+	????
+
+	выражены $f_1(x_1, x_2 \dots x_n) = \overline{x} \quad f_2(x_1, x_2, \dots x_n) = \overline{x}$
+	
+	$f_5 \notin S$
+	
+	получим с ней 1 и 0
+	
+	Найдем нарушение $S$
+	
+	$f^*(x_1 \dots x_n) \neq f(x_1 \dots x_n)$
+	
+	$\overline{f(\overline{x_1}, \dots \overline{x_n})} \neq f(x_1, \dots x_n)$
+	
+	$f(\overline{x_1}, \overline{x_2}, \dots \overline{x_n}) = f(x_1, \dots x_n)$
+	
+	Рассмотрим $f_5(x; \overline{x}; x; \dots \overline{x}) = $ 
+	
+	(если $x_i = 0 \Rightarrow x \quad x_i = 1 \Rightarrow \overline{x}$)
+	
+	$= $
+	$\left[ 
+  		\begin{gathered} 
+    			f(x_1, x_2 \dots x_n) \: when \: x = 0 \hfill 
+        \\ 
+        		f(\overline{x_1}, \dots \overline{x_n}) \: when \: x = 1 \hfill 
+        \\ 
+	  	\end{gathered} 
+	\right.$
+	$ = 0$ или $1$
+	
+\begin{example}
+	$f(x, y, z) = x \lor yz \notin S$
+	
+	нужно найти $f(1, 0, 0) = f(0, 1, 1)$ (нарушение $S$)
+	
+	Рассмотрим $f(\overline{x}, x, x) = $
+	$\left[ 
+  		\begin{gathered} 
+    			f(1, 0, 0) = 1 \quad x = 0 \hfill 
+        \\ 
+        		f(0, 1, 1) = 1 \quad x = 1 \hfill 
+        \\ 
+	  	\end{gathered} 
+	\right.$
+	$ = 1$
+	
+	$f(\overline{x}, x, x) = \overline{x} \lor xx = \overline{x} \lor x = 1$
+	
+	если получили 0, то $\overline{0} = 1$ и наоборот
+\end{example}
+
+	\textbf{Шаг 2:}
+	
+	Имеем $0, 1, \overline{x}$
+	
+	Надо $x \cdot y$ выразить
+	
+	Берем $f_3 \in L$
+	
+	$f_3(x_1, \dots x_n) = \dots + \dots + \dots + x_iy_j + \dots$
+	
+	Подставим $0; 1; x_i; x_j$
+	
+	Возьмем самое короткое слагаемое с $x_i \quad x_j$
+	
+	Для определенности $\exists$ это $x_1 \cdot x_2$ 
+	
+	$f_3(x_1 \dots x_n) = 1 + x_1 + x_2 + x_1x_2x_3\dots x_k + \dots$
+	
+	подставим $x_3 \dots x_k = 1$
+	
+	остальные $x_{k+1 \dots} = 0$
+	
+	$f(x_1, x_2, 1, 1, 1, 0, 0, 0, \dots 0) = C_1 + x_1x_2 + C_2x_1 + C_3x_2 + 0 \cdot x_1x_2 = $	
+	
+	$g(x_1, x_2) = $
+	$\left[ 
+  		\begin{gathered} 
+    			x_1 x_2 \hfill 
+        \\ 
+        		1 + x_1 x_2 \hfill 
+        \\ 
+        		1 + x_1 + x_1 x_2 \hfill 
+        \\ 
+        		1 + x_2 +  x_1 x_2 \hfill 
+        \\ 	  	
+        		x_1 +  x_1 x_2 \hfill 
+        \\ 	  	
+        		x_2 +  x_1 x_2 \hfill 
+        \\ 	  		  	
+        		x_1 + x_2 +  x_1 x_2 \hfill 
+        \\ 	  		  	
+	  	\end{gathered} 
+	\right.$
+	
+	
+	если $g(x_1, x_2) = 1 + x_1 x_2$
+	
+	$\overline{g(x_1, x_2)} = x_1 x_2$ ~-- отрицание уже есть
+	
+	если $g(x_1, x_2) = 1 + x_1 + x_1 x_2 = 1 + x_2(1 + x_2)$
+	
+	тогда $\overline{g(x_1, \overline{x_2})} = 1 + (1 + x_1(1 + 1 + x_2)) = x_1 x_2$
+
+	все случаи: $g(x_1, x_2) = C_1 + (x_1 + C_2) \cdot (x_2 + C_3)$
+	
+\begin{example}
+	$f_3(x, y, z) = x + yz$
+	
+	$f_3(0, x, y) = 0 + xy = xy$
+\end{example}
+
+\begin{example}
+	$f_3(x, y, z) = x \Rightarrow yz = 1 + x + xyz$
+	
+	$f_3(x, y, 1) = 1 + x + xy = 1 + x(1 + y)$
+	
+	$\overline{f_3(x, \overline{y}, 1)} = xy$
+	
+	можно было
+	
+	$f(1, x, y) = 1 + 1 + xy = xy$
+\end{example}
+
+\begin{example}
+	$f(x, y, z) = x \Rightarrow yz$
+	
+	
+	$g(x, y) = x + y$
+	
+	$\notin T_0, T_1, L, M, S$
+	
+	Выражаем
+	
+	$f(x, x, x) = x \Rightarrow xx = 1$
+	
+	$g(x, x) = x + x = 0$
+	
+	Случай 0, 1, надо $\overline{x}$
+	
+	Выражаем $\overline{x}$
+	
+	$g(x, y) \notin M$
+	
+	$g(1, 0) = 1$
+	
+	$g(1, 1) = 0$
+	
+	$\Rightarrow g(1, x) = \overline{x}$
+	
+	$\Rightarrow \overline{x} = g(f(x, x, x), x)$
+	
+	Выражаем $x \cdot y$
+	
+	$f(x, y, z) = xx \Rightarrow yz = 1 + x + xyz$
+	
+	Догадаемся, что $f(1, x, y) = x \cdot y$
+	
+	Ответы: $\overline{x} = g(f(x, x, x), x) \quad x \cdot y = f(1, x, y)$
+\end{example}
+
+
 
 \end{document}
