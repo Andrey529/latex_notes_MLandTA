@@ -2420,5 +2420,470 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 \end{example}
 
 
+	Полные наборы из одной функции (от двух переменных)
+
+	$\{f(x,y)\}$ ~~~- полный
+
+	По теореме Поста: $f(x,y) \notin $ L,M,S,$T_{0}$,$T_{1}$
+
+	Таблица истинности для f:
+
+	\begin{table}[h!]
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		$xy$ & $f1$ & $f2$ & $f3$ & $f4$\\ \hline
+		00 & 1 & 1 & 1 & 1 \\ \hline
+		01 & 0 & 0 & 1 & 1\\ \hline
+		10 & 0 & 1 & 0 & 1\\ \hline
+		11 & 0 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+
+	1 строчка :
+
+	xy $f_{1} f_{2} f_{3} f_{4}$
+
+	00 1 1 1 1 $\notin T_{0}$
+
+	4 строчка :
+
+	xy $f_{1} f_{2} f_{3} f_{4}$
+
+	11 0 0 0 0 $\notin T_{1}$
+
+
+	$f_{2}(x,y) = \bar{y} \in L$
+
+	$f_{3}(x,y) = \bar{x} \in L$
+
+	$\Rightarrow f_{2},f_{3}$ не подходят
+
+	$f_{1} = \overline{x \lor y}$ $ f_{4} = \overline{x * y}$
+
+	$f_{1}^{*} = f_{4}$ \quad $f_{1},f_{4} \notin S$
+
+	$f_{1} = \overline{x + y + xy} = 1 + x + y +xy \notin L$
+
+	$f_{4} = 1+xy \notin L$
+
+	$f_{1,4}(0,0) = 1 \notin M$
+
+	$f_{1,4}(1,1) = 0 \notin M$
+
+	Ответ: $\{\overline{x \lor y}\}$ ~~~- полный набор
+
+	$\{x \downarrow y \}$ ~~~- стрелка пирса
+
+	$\{x | y\}$ штриф шеффера
+
+	x|x = $\bar{x}$
+
+	$x|y = \overline{x*y} \Rightarrow \overline{x | y} = x * y \Rightarrow (x | y)|(x|y) = x*y $
+
+	$x/y = \overline{xy} = \bar{x} \lor \bar{y} \Rightarrow \bar{x}/\bar{y} = x \lor y $
+
+	$\Rightarrow (x/x)/(y/y) = x \lor y$
+
+	\begin{tikzpicture}
+		\node (3_diag) at ( 1,4) {y};
+		\node (4_diag) at (-1,4) {x};
+
+		\node (1_diag)[scale = 1.5, style = {thick, draw = black}]
+		[scale = 1.3] at ( 1,2) {1};
+
+		\node (2_diag)[scale = 1.5, style = {thick, draw = black}]
+		[scale = 1.3] at ( -1,2) {1};
+		\node (first_diag)[scale = 1.5, style = {thick, draw = black}]
+		[scale = 1.3] at ( 0,0) {1};
+		\path(4_diag) edge[--,bend left=45] (2_diag);
+		\path(2_diag) edge[--,bend left=45] (4_diag);
+		\path(3_diag) edge[--,bend left=45] (1_diag);
+		\path(1_diag) edge[--,bend left=45] (3_diag);
+		\node (2) at ( -1,2) {};
+		\node (3) at ( 0,-2) {$x \lor y$};
+		\path(1_diag) edge[->] (first_diag);
+		\path(2_diag) edge[->] (first_diag);
+		\path(first_diag) edge[->] (3);
+	\end{tikzpicture}
+
+
+	\begin{tikzpicture}
+
+		\node (1_diag) at ( 1,2) {y};
+
+		\node (2_diag) at ( -1,2) {x};
+		\node (first_diag)[scale = 1.5, style = {thick, draw = black}]
+		[scale = 1.3] at ( 0,0) {1};
+		\node (2) at ( -1,2) {};
+		\node (3)[scale = 1.5, style = {thick, draw = black}]
+		[scale = 1.3] at ( 0,-2) {1};
+		\node (4) at ( 0,-4) {x*y};
+		\path(1_diag) edge[->] (first_diag);
+		\path(2_diag) edge[->] (first_diag);
+		\path(first_diag) edge[->] (3);
+		\path (3) edge[->] (4)
+	\end{tikzpicture}
+
+
+	\subsubsection{Автоматическое докозательство теорем}
+
+	Задача выполнимости: дана функция в КНФ
+
+	$(x_{1} \lor x_{2} \lor \bar{x_{3}})(\bar{x_{1}} \lor \bar{x_{2}} \lor x_{3})(x_{1} \lor x_{4})$
+
+	Эффективных алгоритмов для этой задачи нет
+
+	...
+
+	-всегда 0
+
+	-бывает 1
+
+	\subsubsection{Логическое следствие}
+
+	\begin{definition}
+		$P_{1}(x_{1}...x_{k})...P_{n}(x_{1}...x_{k})$
+
+		$n+1$ лог. функций (утверждений)
+
+		Q($x_{1} ... x_{k}$)
+
+		Q ~~~- логическое следствие $P_{1} ... P_{n}$, если для всех наборов значений $x_{i}$, когда все $P_{j}(x_{i}...x_{k}) = 1$
+
+		$Q(x_{1}...x_{k})$ тоже 1
+
+		\end{definition}
+
+
+	\begin{example}
+		$P_{1}(x,y,z)^{k=3} (x+y)\Leftrightarrow 0 $
+
+		$P_{2}(x,y,z) = (y+z) \Leftrightarrow 1$
+
+		$Q(x,y,z) = (x+z) \Leftrightarrow 1 $
+
+		$0+1 = x+y+y+z=x+zy+z=1$
+
+
+		\end{example}
+
+	\begin{table}[h!]
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		$xyz$ & $P_{1}$ & $P_{2}$ & $Q$\\ \hline
+		000 & 1 & 0 & 0\\ \hline
+		001 & 1 & 1 & 1\\ \hline
+		010 & 0 & 1 & 0\\ \hline
+		011 & 0 & 0 & 1 \\ \hline
+		100 & 0 & 0 & 1 \\ \hline
+		101 & 0 & 1 & 0 \\ \hline
+		110 & 1 & 1 & 1 \\ \hline
+		111 & 1 & 0 & 0 \\ \hline
+\end{tabular}
+\end{table}
+
+	Есть 2 набор (001) и (110), где $P_{2}$ ~~~- истина
+
+	Q должно быть тоже истина.
+
+	\begin{remark}
+		Q - логическое сложение $P_{1},P_{2}...P_{n}$, по смыслу это теорем
+		\end{remark}
+
+	\begin{theorem}
+		Известно $P_{1},P_{2}...P_{n}$,тогда Q
+		\end{theorem}
+
+	\begin{definition}
+		Q ~~~- логическое следствие $P_{1}..P_{n}$ тогда и только тогда, когда $P_{1} & P_{2} & ... & P_{n} \Rightarrow Q  $ - тождественно 1
+		эквивалетно ($P_{1}, P_{2} ... P_{n} \Rightarrow Q = 1 $)
+		\end{definition}
+
+	Проверим: $(x+y \Rightarrow 0 )( y+z \Leftrightarrow 1) \Rightarrow ((x+z) \Leftrightarrow1) $ =
+	$\overline{x+y} * y + z \Rightarrow (x+z) = (1 + x + y)(y+z) \Rightarrow (x+z) = 1 + (1+x+y) (y+z) + (1+x+y)(y+z)(x+z) = 1+y+z+xy+xz+yy+yz+yx+yz+zx+zz+xyx+xyz+xzx+xzz+yyx+yyz+yzx+yzz = 1 $
+
+	\textbf{Докозательство: } по ТИ
+
+	\begin{table}[h!]
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		$x..x_{k}$ & $P_{1}$ & $P_{2}$ & .. & $P_{n}$ & $Q$ & $P_{1}P_{2}..P_{n} \Rightarrow Q$\\ \hline
+		00..0 &   &   &  &  & &  \\ \hline
+		. & 1 & 1 & 1 & 1 & 1 & $1 \Rightarrow 1 = 1 $ \\ \hline
+		. &   &   &   &   &   & \\ \hline
+		. &   &   &   &   &   & \\ \hline
+		. & 0 & 1 & 1 & 0 & ? & $0 \Rightarrow ? = 1 $ \\ \hline
+		11..1 &   &   &   &   &   & $\nearrow$ все 1\\ \hline
+\end{tabular}
+\end{table}
+
+	$\Rightarrow$ аналогично, по ТИ
+
+	\begin{table}[h!]
+	\begin{tabular}{|c|c|c|}
+		\hline
+		$x_{1}..x_{k}$ & $P_{1}P_{2}..P_{n} \Rightarrow Q$ &  \\ \hline
+		1 & $1,0 \Rightarrow 1$ & $\leftarrow P_{i} $ есть 0 \\ \hline
+		1 & $1,1 \Rightarrow 1$ & $\leftarrow $ все $P_{i}$,$Q=1$ \\ \hline
+		1 & $1,0 \Rightarrow 0$ & \\ \hline
+		1 & . & \\ \hline
+		1 & $1,0 \Rightarrow 0$ & \\ \hline
+\end{tabular}
+\end{table}
+
+	\textbf{Следствие:} Q - логическое следствие $P_{1}..P_{n}$, тогда и только тогда, когда $P_{1}P_{2}..P_{n}\bar{Q}$ тождественно ложь
+
+	\begin{remark}
+		по сути - это докозательство от противного
+		\end{remark}
+
+	$P_{1}P_{2}..P_{n} \Rightarrow = 1$
+
+	$P_{1}P_{2}..P_{n} \Rightarrow Q = 0 $
+
+	$P_{1} ... P_{n} \lor Q = 0$ \quad $\bar{a} \lor b = \bar{a} * \bar{b}$
+
+	$P_{1}... P_{n} * \bar{Q} = 0$
+
+	$P_{1} ... P_{n} \bar{Q} = 0$ чтд
+
+	Свойства логического следствия:
+
+	1. $Q = 1$ логическое следствие $P_{1}..P_{n}$
+
+	\textbf{Докозательство:} $P_{1}..P_{n} \bar{Q} = P_{1}P_{2}..P_{n} \bar{1} = P_{1}P_{2}..P_{n}*0 = 0$
+
+	2. $Q = 0$ логическое следствие $P_{1}..P_{n}$
+	Тогда $P_{1}*P_{2}..P_{n}=0$
+
+	\textbf{Докозательство:} $0 = P_{1}..P_{n} \bar{Q} = P_{1}..P_{n} \bar{0} = P_{1}..P_{n}*1 = P_{1}..P_{n}$ чтд
+
+	$2^{'}.$ $Q=0$ логическое следствие $P_{1}..P_{n}$ тогда $\forall$ набора значений $x_{1},x_{2}..x_{n}$ можно найти $P_{i}=0$
+
+	\textbf{Докозательство: } $P_{1},P_{2}..P_{n} = 0 \Rightarrow $ один из $P_{i} = 0$ чтд
+
+	3. $Q_{1}$ ~~~- логическое следствие $P_{1}..P_{2}$
+
+	$Q_{2}$ ~~~- логическое следствие $P_{1}..P_{n} Q_{1}$
+
+	$Q_{i}$ ~~~- логическое следствие $P_{1}..P_{n} Q_{1}..Q_{i-1}$ тогда $Q_{i}$ - логическое следствие $P_{1}..P_{n}$
+
+	\textbf{Докозательство: } $P_{1}..P_{n} \bar{Q_{1}} = 0$ (следует из $Q_{1}$(1))
+
+	$P_{1}..P_{n} Q_{1}\bar{Q_{2}} = 0$ (следует из $Q_{2}$) $\Rightarrow$
+
+	$P_{1}..P_{n} \bar{Q_{2}} = 0$
+
+	$(1) \Rightarrow P_{1}P_{2}..P_{n} = 0 $
+
+	или
+
+	$\bar{Q_{1}} = 0 \Rightleftarrow Q = 1$
+
+	$P_{1}..P_{n} \bar{Q_{2}} = 0$
+
+	$P_{1}..P_{n} Q_{1}\bar{Q_{2}} = 0 \Rightarrow P_{1}..P_{n}Q_{2} = 0 $ чтд
+
+	\begin{definition}
+		$D_{1}$ - дизъюнкты $D_{1} = \mathbf{V} \lor D_{1}^{'}$
+
+		$D_{2} ,$ где $D_{2} = \mathbf{V} \lor D_{2}^{'}$
+
+		(дизъюнкты с одним литералом, отличающимся отрицанием)
+
+		Тогда, Res($D_{1},D_{2}$) = $D_{1}^{'} \lor D_{2}^{'}$ резольвенте
+
+		\end{definition}
+
+		\begin{example}
+ \left.
+  \begin{array}{c}
+     $x \lor y \lor z$  \\
+     $ \overline{x} \lor z$  \\
+  \end{array}
+\right\vline $Y \lor Z \lor Z = Y \lor Z$
+
+
+ $ $
+
+	\left.
+  \begin{array}{c}
+     $x \lor \overline{y} \lor z$  \\
+     $ x \lor y \lor T$  \\
+  \end{array}
+\right\vline $X \lor Z \lor X \lor T = x \lor Z \lor T$
+
+
+ $ $
+
+	\left.
+  \begin{array}{c}
+     $\overline{x} \lor \overline{y} \lor \overline{z}$  \\
+     $ X \lor Y \lor T$  \\
+  \end{array}
+\right\vline $\overline{Y} \lor \overline{Z} \lor \overline{Y} \lor \overline{T} = 1$
+
+$ $
+
+
+	\left.
+  \begin{array}{c}
+     $\overline{x} \lor \overline{Y} \lor \overline{Z}$  \\
+     $ X \lor Y \lor T$  \\
+  \end{array}
+\right\vline $\overline{X} \lor \overline{Z} \lor X \lor T = 1$
+
+$ $
+
+
+	\left.
+  \begin{array}{c}
+     $ X \lor Y$  \\
+     $ \overline{Y} $  \\
+  \end{array}
+\right\vline X
+
+$ $
+
+
+	(особый случай)(часть определения)
+
+$ $
+
+
+	\left.
+  \begin{array}{c}
+     $Y$  \\
+     $ \overline{Y} $  \\
+  \end{array}
+\right\vline ничего $\square$ = 0
+
+
+ $ $
+
+	\left.
+  \begin{array}{c}
+     $X \lor Y \lor Z$  \\
+     $Y \lor T \lor \overline{U}$  \\
+  \end{array}
+\right\vline нет резольвенты
+
+	\begin{definition}
+		Res($D_{1},D_{2}$) ~~~- это логическое следствие $D_{1}$ и $D_{2}$
+		\end{definition}
+
+	\textbf{Докозательство :}
+
+	\begin{table}[h!]
+	\begin{tabular}{|c|c|c|}
+		\hline
+		$D_{1} = \mathbf{V} \lor D_{1}^{'} $ & $D_{2}^{'} = \mathbf{V} \lor D_{2}^{'}$ & $D_{1}^{'} \lor D_{2}^{'}$  \\ \hline
+		1 & 1 & \\ \hline
+\end{tabular}
+\end{table}
+
+			\end{example}
+
+	если $D_{1} = 1,D_{2}=1,$то $D_{1}^{'} \lor D_{2}^{'}$
+
+	тоже должно быть 1
+
+	если $\mathbf{V} = 0$
+
+	$1 = D_{1} = 0 \lor D_{1}^{'} = D_{1}^{'} = 1 \Rightarrow D_{1}^{'} \lor D_{2}^{'} = 1 $
+
+	если $\mathbf{V} = 1$
+
+	$1 = D_{2} = \bar{1} \lor D_{1}^{'} = D_{2}^{'} \Rightarrow D_{1}^{'} \lor D_{2}^{'} = 1 $
+
+	\subsubsection{Метод резолюций}
+
+	Дано: $P_{1}P_{2} ... P_{n},Q,$ доказать, что Q -
+
+	P:
+
+	Шаг 0. запишем $P_{i} \bar{Q}$ в КНФ
+
+	тогда $P_{1},P_{2}..P_{n},\bar{Q}$ тоже будет иметь КНФ
+
+	\begin{example}
+		$P_{1} = x + y \Leftrightarrow 0 $
+
+		$P_{2} = y + z \Leftrightarrow 1 \bar{Q} = \overline{x+z\Leftrightarrow 1} = (x \lor z)(x \lor \bar{z})$
+
+		т.е. $P_{1}P_{2}\bar{Q} = $
+
+		$(\bar{x} \lor y)(x \lor \bar{y})(\bar{y} \lor \bar{z})(y \lor z)(\bar{x} \lor z)(x \lor \bar{z})$
+
+		$D_{1}$ \qquad $D_{2}$ \qquad $D_{3}$ \quad $D_{4}$ \quad $D_{5}$ \quad $D_{6}$
+
+		считаем, что у нас дизъюнктов:
+
+		$\bar{x} \lor y$ \quad $\bar{x} \lor \bar{y}$ \quad $\bar{y} \lor \bar{z}$ \quad $y \lor z$ \quad $\bar{x} \lor z $ \quad $x \lor \bar{z}$
+
+		$D_{1}$ \qquad $D_{2}$ \qquad $D_{3}$ \qquad $D_{4}$ \qquad $D_{5}$ \qquad $D_{6}$
+
+		Шаг 1,2,3...
+
+		Считаем резольвенты, пока не получим $\square$
+		\end{example}
+
+	\begin{example}
+		 \left.
+  \begin{array}{ccc}
+     $D_{1}$ & = & $\overline{x} \lor y$ \\
+     $D_{2}$ & = & $\overline{y} \lor \overline{z}$ \\
+  \end{array}
+\right\vline $\overline{x} \lor \overline{z} = D_{7}$
+
+		 $ $
+
+		\left.
+  \begin{array}{ccc}
+     $D_{2}$ & = & $x \lor \overline{y}$ \\
+     $D_{4}$ & = & $y \lor z$ \\
+  \end{array}
+\right\vline $x \lor z = D_{8}$
+
+		$ $
+
+		\left.
+  \begin{array}{ccc}
+     $D_{7}$ & = & $\overline{x} \lor \overline{z}$ \\
+     $D_{5}$ & = & $\overline{x} \lor z$ \\
+  \end{array}
+\right\vline $x = D_{9}$
+
+		$ $
+
+		\left.
+  \begin{array}{ccc}
+     $D_{8}$ & = & $x \lor z$ \\
+     $D_{6}$ & = & $y \lor \overline{z}$ \\
+  \end{array}
+\right\vline $\overline{x} = D_{9}$
+
+		 $ $
+
+		\left.
+  \begin{array}{ccc}
+     $D_{8}$ & = & $x \lor z$ \\
+     $D_{6}$ & = & $x \lor \overline{z}$ \\
+  \end{array}
+\right\vline $x = D_{10}$
+
+		$ $
+
+		\left.
+  \begin{array}{ccc}
+     $D_{9}$ & = & $\overline{x}$ \\
+     $D_{10}$ & = & $x$ \\
+  \end{array}
+\right\vline $\square$
+
+		$\square $ (пустой дизъюнкт получен)
+
+		\end{example}
+
 
 \end{document}
