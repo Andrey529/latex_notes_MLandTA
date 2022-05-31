@@ -551,7 +551,7 @@ $(x\Rightarrow y)(y\Rightarrow x) = x \Rightarrow y$
            $f(x) = \overline{x} = 1 + x = 1 + 1x$
         \end{remark}
     
-    \textbf{Докозательство:}
+    \textbf{Доказательство:}
     
         \begin{definition}
             Разные многочлены - это разные логические функции т.е. $f(x_{1} ... x_{n} = a_{0} + ... + a_{1}x_{1} ... x_{n}$
@@ -702,7 +702,7 @@ $(x\Rightarrow y)(y\Rightarrow x) = x \Rightarrow y$
 	$\overline{xy} \neq \overline{x} \cdot \overline{y} = \overline{x} \: \overline{y}$
 \end{remark}
 
-\textbf{Докозательство формул через таблицу истинности:}
+\textbf{Доказательство формул через таблицу истинности:}
 
 \begin{table}[h!]
 	\centering	
@@ -850,7 +850,7 @@ $(x\Rightarrow y)(y\Rightarrow x) = x \Rightarrow y$
 	
 	Ответ: $f(x, y, z) = \overline{x} \: y \: \overline{z} \lor \overline{x} \: yz \lor xy \: \overline{z}$
 
-\textbf{Докозательство корректности алгоритма:}
+\textbf{Доказательство корректности алгоритма:}
 
 Когда полученный ДНФ = 1?
 
@@ -1676,14 +1676,14 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	1. $K_{1} \subset K_{2}$, тогда $K_{1}^{*} \subset K_{2}^{*}$
 
-	\textbf{Докозательство:}
+	\textbf{Доказательство:}
 
 		Если есть f $\in K_{1}^{*} \Rightarrow f = $ композиция $f_{1} \in K_{1} \Rightarrow$
 	f - композиция $(f_{i} \in K_{2}) \Rightarrow f \in K_{2}^{*} $ чтд.
 
 	2.Если $K_{1} \subset K_{2}$ и $K_{1}$ - полный, то $K_{2}$ - полный
 
-	\textbf{Докозательство:}
+	\textbf{Доказательство:}
 
 	$K_{1} \subset K_{2} \Rightarrow K_{1}^{*} \subset K_{2}^{*} \Rightarrow \alpha
 	 \subset K_{2}^{*} \Rightarrow K_{2}^{*} = \alpha
@@ -1691,7 +1691,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	3. Пусть $K_{1}$, $K_{2}$ ~~- замкнутое, тогда $K_{1} \cap K_{2}$ ~~- тоже замкнутые
 
-	\textbf{Докозательство:}
+	\textbf{Доказательство:}
 
 	Пусть есть $f = (K_{1} \cap K_{2})^{*} $ ~~- композиция
 
@@ -1736,7 +1736,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	\textbf{Утверждение:} $T_{0} $ - замкнут
 
-	\textbf{Докозательство:}
+	\textbf{Доказательство:}
 
 	$\sqsupset f \in T_{0}^{*}$, проверим, что $f \in T_{0}$
 
@@ -1784,7 +1784,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 			\end {proposition}
 
 
-		\textbf{Докозательство:} смотри $T_{0}$
+		\textbf{Доказательство:} смотри $T_{0}$
 
 		3. Класс $\frame{\&}$
 
@@ -1838,19 +1838,19 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 			\end{proposition}
 
-		\textbf{Докозательство 1: }
+		\textbf{Доказательство 1: }
 
-		смотри докозательство $\frame{\&}$
+		смотри доказательство $\frame{\&}$
 
 
-		\textbf{Докозательство 2: }
+		\textbf{Доказательство 2: }
 
 		$\frame{V} = \{V,0,1\}^{*}$ 
 		$\Rightarrow \frame{V}^{*} = \{V,0,1\}^{**} = \{V,0,1\}^{*} = \frame{V}$ свойства замыкания
 
 		\end{example}
 
-	\textbf{Докозательство: } $\sqsupset  f \in K^{*} \Rightarrow f - $ комп $f_{i}
+	\textbf{Доказательство: } $\sqsupset  f \in K^{*} \Rightarrow f - $ комп $f_{i}
 	\Rightarrow f_{i} \in K^{*}
 	$
 
@@ -1915,7 +1915,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	(L - линейные многочлены Жегалкина, степени $\leqslant$ 1)
 
-	\textbf{Докозательство: } $ x * y$ имеет многочлены Жегалкина $x*y$
+	\textbf{Доказательство: } $ x * y$ имеет многочлены Жегалкина $x*y$
 
 	он единственный $\Rightarrow $ не существует линейного многочлена Жегалкина %do
 
@@ -2495,10 +2495,10 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 		[scale = 1.3] at ( -1,2) {1};
 		\node (first_diag)[scale = 1.5, style = {thick, draw = black}]
 		[scale = 1.3] at ( 0,0) {1};
-		\path(4_diag) edge[--,bend left=45] (2_diag);
-		\path(2_diag) edge[--,bend left=45] (4_diag);
-		\path(3_diag) edge[--,bend left=45] (1_diag);
-		\path(1_diag) edge[--,bend left=45] (3_diag);
+		\path(4_diag) edge[->,bend left=45] (2_diag);
+		\path(2_diag) edge[->,bend left=45] (4_diag);
+		\path(3_diag) edge[->,bend left=45] (1_diag);
+		\path(1_diag) edge[->,bend left=45] (3_diag);
 		\node (2) at ( -1,2) {};
 		\node (3) at ( 0,-2) {$x \lor y$};
 		\path(1_diag) edge[->] (first_diag);
@@ -2521,11 +2521,11 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 		\path(1_diag) edge[->] (first_diag);
 		\path(2_diag) edge[->] (first_diag);
 		\path(first_diag) edge[->] (3);
-		\path (3) edge[->] (4)
+		\path (3) edge[->] (4);
 	\end{tikzpicture}
 
 
-	\subsubsection{Автоматическое докозательство теорем}
+	\subsubsection{Автоматическое доказательство теорем}
 
 	Задача выполнимости: дана функция в КНФ
 
@@ -2595,14 +2595,14 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 		\end{theorem}
 
 	\begin{definition}
-		Q ~~~- логическое следствие $P_{1}..P_{n}$ тогда и только тогда, когда $P_{1} & P_{2} & ... & P_{n} \Rightarrow Q  $ - тождественно 1
+		Q ~-- логическое следствие $P_{1}..P_{n}$ тогда и только тогда, когда $P_{1} \& P_{2} \& ... \& P_{n} \Rightarrow Q  $ - тождественно 1
 		эквивалетно ($P_{1}, P_{2} ... P_{n} \Rightarrow Q = 1 $)
 		\end{definition}
 
-	Проверим: $(x+y \Rightarrow 0 )( y+z \Leftrightarrow 1) \Rightarrow ((x+z) \Leftrightarrow1) $ =
-	$\overline{x+y} * y + z \Rightarrow (x+z) = (1 + x + y)(y+z) \Rightarrow (x+z) = 1 + (1+x+y) (y+z) + (1+x+y)(y+z)(x+z) = 1+y+z+xy+xz+yy+yz+yx+yz+zx+zz+xyx+xyz+xzx+xzz+yyx+yyz+yzx+yzz = 1 $
+	Проверим: $((x+y) \Leftrightarrow 0 )( (y+z) \Leftrightarrow 1) \Rightarrow ((x+z) \Leftrightarrow1) $ =
+	$\overline{x+y} *( y + z) \Rightarrow (x+z) = (1 + x + y)(y+z) \Rightarrow (x+z) = 1 + (1+x+y) (y+z) + (1+x+y)(y+z)(x+z) = 1+y+z+xy+xz+yy+yz+yx+yz+zx+zz+xyx+xyz+xzx+xzz+yyx+yyz+yzx+yzz = 1 $
 
-	\textbf{Докозательство: } по ТИ
+	\textbf{Доказательство: } по ТИ
 
 	\begin{table}[h!]
 	\begin{tabular}{|c|c|c|c|c|c|c|}
@@ -2634,7 +2634,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 	\textbf{Следствие:} Q - логическое следствие $P_{1}..P_{n}$, тогда и только тогда, когда $P_{1}P_{2}..P_{n}\bar{Q}$ тождественно ложь
 
 	\begin{remark}
-		по сути - это докозательство от противного
+		по сути - это доказательство от противного
 		\end{remark}
 
 	$P_{1}P_{2}..P_{n} \Rightarrow = 1$
@@ -2651,16 +2651,16 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	1. $Q = 1$ логическое следствие $P_{1}..P_{n}$
 
-	\textbf{Докозательство:} $P_{1}..P_{n} \bar{Q} = P_{1}P_{2}..P_{n} \bar{1} = P_{1}P_{2}..P_{n}*0 = 0$
+	\textbf{Доказательство:} $P_{1}..P_{n} \bar{Q} = P_{1}P_{2}..P_{n} \bar{1} = P_{1}P_{2}..P_{n}*0 = 0$
 
 	2. $Q = 0$ логическое следствие $P_{1}..P_{n}$
 	Тогда $P_{1}*P_{2}..P_{n}=0$
 
-	\textbf{Докозательство:} $0 = P_{1}..P_{n} \bar{Q} = P_{1}..P_{n} \bar{0} = P_{1}..P_{n}*1 = P_{1}..P_{n}$ чтд
+	\textbf{Доказательство:} $0 = P_{1}..P_{n} \bar{Q} = P_{1}..P_{n} \bar{0} = P_{1}..P_{n}*1 = P_{1}..P_{n}$ чтд
 
 	$2^{'}.$ $Q=0$ логическое следствие $P_{1}..P_{n}$ тогда $\forall$ набора значений $x_{1},x_{2}..x_{n}$ можно найти $P_{i}=0$
 
-	\textbf{Докозательство: } $P_{1},P_{2}..P_{n} = 0 \Rightarrow $ один из $P_{i} = 0$ чтд
+	\textbf{Доказательство: } $P_{1},P_{2}..P_{n} = 0 \Rightarrow $ один из $P_{i} = 0$ чтд
 
 	3. $Q_{1}$ ~~~- логическое следствие $P_{1}..P_{2}$
 
@@ -2668,7 +2668,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	$Q_{i}$ ~~~- логическое следствие $P_{1}..P_{n} Q_{1}..Q_{i-1}$ тогда $Q_{i}$ - логическое следствие $P_{1}..P_{n}$
 
-	\textbf{Докозательство: } $P_{1}..P_{n} \bar{Q_{1}} = 0$ (следует из $Q_{1}$(1))
+	\textbf{Доказательство: } $P_{1}..P_{n} \bar{Q_{1}} = 0$ (следует из $Q_{1}$(1))
 
 	$P_{1}..P_{n} Q_{1}\bar{Q_{2}} = 0$ (следует из $Q_{2}$) $\Rightarrow$
 
@@ -2678,7 +2678,7 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 
 	или
 
-	$\bar{Q_{1}} = 0 \Rightleftarrow Q = 1$
+	$\bar{Q_{1}} = 0 \Leftrightarrow Q = 1$
 
 	$P_{1}..P_{n} \bar{Q_{2}} = 0$
 
@@ -2696,52 +2696,62 @@ f(x,y,z) = xy $\Leftrightarrow$ z
 		\end{definition}
 
 		\begin{example}
- \left.
+		$
+\left.
   \begin{array}{c}
-     $x \lor y \lor z$  \\
-     $ \overline{x} \lor z$  \\
+     x \lor y \lor z  \\
+      \overline{x} \lor z  \\
   \end{array}
-\right\vline $Y \lor Z \lor Z = Y \lor Z$
+\right. \vline Y \lor Z \lor Z = Y \lor Z
+$
+
+ $ $
+
+$
+	\left.
+  \begin{array}{c}
+     x \lor \overline{y} \lor z  \\
+     x \lor y \lor T  \\
+  \end{array}
+\right. \vline X \lor Z \lor X \lor T = x \lor Z \lor T
+$
 
 
  $ $
 
+$
 	\left.
   \begin{array}{c}
-     $x \lor \overline{y} \lor z$  \\
-     $ x \lor y \lor T$  \\
+     \overline{x} \lor \overline{y} \lor \overline{z}  \\
+      X \lor Y \lor T  \\
   \end{array}
-\right\vline $X \lor Z \lor X \lor T = x \lor Z \lor T$
-
-
- $ $
-
-	\left.
-  \begin{array}{c}
-     $\overline{x} \lor \overline{y} \lor \overline{z}$  \\
-     $ X \lor Y \lor T$  \\
-  \end{array}
-\right\vline $\overline{Y} \lor \overline{Z} \lor \overline{Y} \lor \overline{T} = 1$
+\right. \vline \overline{Y} \lor \overline{Z} \lor \overline{Y} \lor \overline{T} = 1
+$
 
 $ $
 
 
+$
 	\left.
   \begin{array}{c}
-     $\overline{x} \lor \overline{Y} \lor \overline{Z}$  \\
-     $ X \lor Y \lor T$  \\
+     \overline{x} \lor \overline{Y} \lor \overline{Z}  \\
+      X \lor Y \lor T  \\
   \end{array}
-\right\vline $\overline{X} \lor \overline{Z} \lor X \lor T = 1$
+\right. \vline \overline{X} \lor \overline{Z} \lor X \lor T = 1
+$
+
 
 $ $
 
 
+$
 	\left.
   \begin{array}{c}
-     $ X \lor Y$  \\
-     $ \overline{Y} $  \\
+      X \lor Y  \\
+      \overline{Y}   \\
   \end{array}
-\right\vline X
+\right. \vline X
+$
 
 $ $
 
@@ -2751,28 +2761,30 @@ $ $
 $ $
 
 
+$
 	\left.
   \begin{array}{c}
-     $Y$  \\
-     $ \overline{Y} $  \\
+     Y  \\
+      \overline{Y}   \\
   \end{array}
-\right\vline ничего $\square$ = 0
-
+\right. \vline ничего \square = 0
+$
 
  $ $
 
+$
 	\left.
   \begin{array}{c}
-     $X \lor Y \lor Z$  \\
-     $Y \lor T \lor \overline{U}$  \\
+     X \lor Y \lor Z  \\
+     Y \lor T \lor \overline{U}  \\
   \end{array}
-\right\vline нет резольвенты
-
+\right. \vline нет резольвенты
+$
 	\begin{definition}
 		Res($D_{1},D_{2}$) ~~~- это логическое следствие $D_{1}$ и $D_{2}$
 		\end{definition}
 
-	\textbf{Докозательство :}
+	\textbf{Доказательство :}
 
 	\begin{table}[h!]
 	\begin{tabular}{|c|c|c|}
@@ -2829,57 +2841,69 @@ $ $
 		\end{example}
 
 	\begin{example}
+$
 		 \left.
   \begin{array}{ccc}
-     $D_{1}$ & = & $\overline{x} \lor y$ \\
-     $D_{2}$ & = & $\overline{y} \lor \overline{z}$ \\
+     D_{1} & = & \overline{x} \lor y \\
+     D_{2} & = & \overline{y} \lor \overline{z} \\
   \end{array}
-\right\vline $\overline{x} \lor \overline{z} = D_{7}$
+\right. \vline \overline{x} \lor \overline{z} = D_{7}
+$
 
 		 $ $
 
+$
 		\left.
   \begin{array}{ccc}
-     $D_{2}$ & = & $x \lor \overline{y}$ \\
-     $D_{4}$ & = & $y \lor z$ \\
+     D_{2} & = & x \lor \overline{y} \\
+     D_{4} & = & y \lor z \\
   \end{array}
-\right\vline $x \lor z = D_{8}$
+\right. \vline x \lor z = D_{8}
+$
 
 		$ $
 
+$
 		\left.
   \begin{array}{ccc}
-     $D_{7}$ & = & $\overline{x} \lor \overline{z}$ \\
-     $D_{5}$ & = & $\overline{x} \lor z$ \\
+     D_{7} & = & \overline{x} \lor \overline{z} \\
+     D_{5} & = & \overline{x} \lor z \\
   \end{array}
-\right\vline $x = D_{9}$
+\right. \vline x = D_{9}
+$
 
 		$ $
 
+$
 		\left.
   \begin{array}{ccc}
-     $D_{8}$ & = & $x \lor z$ \\
-     $D_{6}$ & = & $y \lor \overline{z}$ \\
+     D_{8} & = & x \lor z \\
+     D_{6} & = & y \lor \overline{z} \\
   \end{array}
-\right\vline $\overline{x} = D_{9}$
+\right. \vline \overline{x} = D_{9}
+$
 
 		 $ $
 
+$
 		\left.
   \begin{array}{ccc}
-     $D_{8}$ & = & $x \lor z$ \\
-     $D_{6}$ & = & $x \lor \overline{z}$ \\
+     D_{8} & = & x \lor z \\
+     D_{6} & = & x \lor \overline{z} \\
   \end{array}
-\right\vline $x = D_{10}$
+\right. \vline x = D_{10}
+$
 
 		$ $
 
+$
 		\left.
   \begin{array}{ccc}
-     $D_{9}$ & = & $\overline{x}$ \\
-     $D_{10}$ & = & $x$ \\
+     D_{9} & = & \overline{x} \\
+     D_{10} & = & x \\
   \end{array}
-\right\vline $\square$
+\right. \vline \square
+$
 
 		$\square $ (пустой дизъюнкт получен)
 
