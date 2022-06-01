@@ -3449,5 +3449,500 @@ $
 \end{example}
 
 
+	\textbf{Лекция 13}
+	
+\begin{example}
+	Язык $L_{a = b} = \{ \textrm{слова, где a и b поровну}\}$
+	
+	$abc \in L_{a = b}$
+	
+	$abbbcccc \notin L_{a = b}$
+	
+	$ababa \notin L_{a = b}$
+
+	$\Lambda \in L_{a = b}$
+\end{example}
+
+\begin{example}
+	
+	$L_{a^n b^n} = \{ a^n b^n \: | n \in \mathbb{N} \cup \{0 \} \} = \{ \Lambda, ab, aabb, aaabbb, \dots \}$
+	
+	$x^n$ ~-- повторение $n$ раз
+	
+	$L_{a^n b^n} \subset L_{a = b}$
+\end{example}
+
+\begin{example}
+	$A = \{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, +, (, ), - \}$
+	
+	$L_{tel} = \{ \textrm{язык телефонных номеров} \}$
+	
+	$+7 (921) 401-00-00 \in L_{tel}$
+\end{example}
+
+\begin{definition}
+	Грамматика (формальная грамматика) ~-- это формальное описание языка
+	
+	Если есть грамматика языка $L$
+	
+	$\forall$ слова $w$ можно проверить $w \in L$ ?
+\end{definition}
+
+	\textbf{Типы грамматик:}
+
+	\begin{enumerate} \addtocounter{enumi}{-1}
+		\item{
+			Грамматику можно описать с помощью машины Тьюринга 
+	
+			Грамматика = программа проверяет $w \in L$ ?
+	
+			Если для языка создать программу проверки ~-- это тип 0		
+		}
+		\item{
+			Контекстно-зависимые грамматики
+			
+			Контекстно-зависимые языки ~-- описываются через конечно-зависимые грамматики		
+		}
+		\item{
+			Контекстно-свободные грамматики
+			
+			КС языки ~-- те языки, которые можно описать с помощью КС грамматик		
+		}
+		\item{
+			Регулярные выражения или конечные автоматы
+			
+			Регулярные языки задаются регулярными выражениями или конечными автоматами		
+		}
+	\end{enumerate}
+	
+\begin{remark}
+	Каждый следующий вид грамматики "проще предыдущего"
+	
+	Но множества его языков сужаются
+	
+	Языки типо 0 $\supset$ КЗ-языки $\supset$ КС-языки $\supset$ Регулярные языки
+\end{remark}
+
+\subsubsection{Машина Тьюринга}
+
+\begin{definition}
+	Машина Тьюринга = ($A; \Box; Q; R; q_0; Q_F$)
+	
+	$A$ ~-- алфавит, $\neq \emptyset,$ множество конечное
+	
+	$\Box \in A$ ~-- специальный символ
+	
+	$Q$ ~-- состояние, $\neq \emptyset,$ множество конечное
+
+	$R$ ~-- правила перехода
+	
+	$q_0 \in Q$ ~-- начальное состояние
+	
+	$Q_F \subset Q$ ~-- подмножество конечных состояний 
+	
+	$R: A \times Q \rightarrow A \times Q \times \{ L, R, E - \textrm{не двигаться}\}$
+\end{definition}
+
+\begin{example}
+
+	$A = \{ 1, \Box \}$
+	
+	$Q = \{ q_0, q_1 \}$
+
+	$Q_F = \{ q_1 \}$
+
+
+	\begin{table}[H]
+	\centering
+		\begin{tabular}{|c|c|c|}
+		\hline
+		$R/A$ & 1 & $\Box$ \\ \hline
+		$q_0$ & $1, q_1, R$ & $1, q_1, S$ \\ \hline
+		$q_1$ & не надо & не надо \\ \hline
+		\end{tabular}
+	\end{table}
+
+	
+	Конечное количество символов ленты $\neq \Box$	
+
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{...} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       $\uparrow$    \\
+        $q_0$
+	\end{tabular}
+	\end{table}
+
+	Сначало головка смотрит на клетку с индексом 0, состояние $q_0$
+	
+	Видим символ 1
+	
+	$R(1, q_0) = 1, q_0, R$ ~-- сдвинуть головку вправо
+	
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{...} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       & $\uparrow$    \\
+       & $q_0$
+	\end{tabular}
+	\end{table}	
+	
+	Головка на клетке 1
+	
+	Символ = 1
+	
+	Состояние = $q_0$
+	
+	$R(1, q_0) = 1, q_0, R$
+	
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{...} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       & & $\uparrow$    \\
+       & & $q_0$
+	\end{tabular}
+	\end{table}
+	
+	потом
+	
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{...} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       & & & $\uparrow$   
+	\end{tabular}
+	\end{table}
+
+	потом
+	
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{...} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       & & & & $\uparrow$   
+	\end{tabular}
+	\end{table}
+	
+	Теперь:
+	
+	Головка: клетка 4
+	
+	Символ: $\Box$
+	
+	Состояние: $q_0$
+	
+	$R(0, q_0) = 1, q_1, E$ ~-- стоим на месте
+	
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{4} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{1} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       & & & & $\uparrow$   
+	\end{tabular}
+	\end{table}	
+		
+	Дано было 1111, результат 11111
+	
+	Вывод: программа дописывает 1
+	
+	Работа Машины Тьюринга формально 
+\end{example}
+
+\begin{definition}
+	Конфигурация: $(w, n \in \mathbb{N} \cup \{ 0 \}, q)$
+	
+	n ~-- положение головки
+	
+	$q \in Q$
+	
+	$w$ ~-- слово на ленте (без хвоста $\Box$)
+	
+	Один шаг исполнения программы:
+	
+	$(w_1, n_1, q_1) \rightarrow (w_2, n_2, q_2)$
+	
+	$w_1[n_1]$ ~-- символ над головкой
+	
+	$R(w_1[n_1], q_1) = (a, q_2, L/R/E)$
+	
+	$w_2 = w_1$ где $w_1[n] = a$
+	
+	если $L \rightarrow n_2 = n_1 - 1$
+	
+	$R \rightarrow n_2 = n_1 + 1$
+	
+	$E \rightarrow n_2 = n_1$
+	
+	Начало работы: $(w, O, q_0)$
+	
+	$w$ ~-- дана
+	
+	$O$ ~-- головка слова
+	
+	$q_0$ ~-- начальное слово
+	
+	$\rightarrow \dots \rightarrow \dots \rightarrow \dots \rightarrow (\overline{\overline{w}}, \overline{q} \in Q_F)$ ~-- конечное состояние
+	
+	Ответ: $\overline{\overline{w}}$, то есть из слова $w$ получили $\overline{\overline{w}}$
+\end{definition}
+
+\begin{remark}
+	(Тезис Чёрге)
+	
+	Все, что мы интуитивно понимаем как алгоритм, может быть реализовано с помощью машины Тьюринга
+\end{remark}
+
+\begin{remark}
+	Модификации машины Тьюринга:
+	
+	\begin{enumerate}
+		\item{
+			$\infty$ в обе стороны лента		
+		}
+		\item{
+			несколько лент		
+		}
+		\item{
+			недетерминированная машина Тьюринга		
+		}
+	\end{enumerate}
+	
+	1, 2, 3 ~-- это все эквивалент обычной машины Тьюринга
+\end{remark}
+
+\begin{remark}
+	Про проверку, слово в языке? $w \in ? L$
+	
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{ } & 
+    \multicolumn{1}{|c}{ } & 
+    \multicolumn{1}{|c}{ } & 
+    \multicolumn{1}{|c}{ } & 
+	\multicolumn{1}{|c}{ } &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{$\Box$} \\
+  \cline{1-9}  
+	\end{tabular}
+	\end{table}		
+	
+	Если результат $1 \Rightarrow w \in L$
+	
+	Если результат $0 \Rightarrow w \notin L$
+	
+	или 
+	
+	$\{ q_1, q_2\} = Q_F$
+	
+	$q_1: w \in L$
+	
+	$q_2: w \notin L$
+	
+	Все зависит от конечного состояния
+\end{remark}
+
+\subsubsection{Контекстно-свободные языки}
+
+\begin{example}
+	Email @ server
+	
+	username $\rightarrow$ word
+	
+	server $\rightarrow$ word.word
+	
+	word $\rightarrow \frame{a}$
+	
+	word $\rightarrow \frame{b}$
+	
+	word $\rightarrow \frame{c}$ 
+	
+	$E \rightarrow u@S \rightarrow w@S \rightarrow$ (используя правило $s \rightarrow w.w$) $w@w.w \rightarrow$ (используя правило $w \rightarrow ww$) $ww@w.w$
+	
+	$\rightarrow xw@w.w \rightarrow xy@w.w$
+	
+	$\rightarrow xy@ww.w \rightarrow xy@www.w$
+	
+	$\rightarrow xy@www.ww$
+\end{example}
+
+	Можно ли получить $xy@@ru$?
+	
+	нет $\notin L$
+	
+	то есть слова, которые можно получить, они $\in L$
+	
+\begin{example}
+
+	Еще
+
+	\begin{enumerate}
+		\item{
+			$S \rightarrow$		
+		}
+		\item{
+			$S \rightarrow aSb$		
+		}
+	\end{enumerate}
+	
+	~-- это грамматика 
+	
+	$S \rightarrow aSb \rightarrow aaSbb \rightarrow aaaSbbb \rightarrow aaabbb$
+	
+	Какие слова можно вывести?
+	
+	$\{ a^n b^n | n \geq 0\} = \{ \Lambda, ab, aabb, aaabbb, \dots  \}$
+\end{example}
+
+\begin{definition}
+	КС-грамматика ~-- $(A, N, S \in N, R)$
+	
+	$A$ ~-- алфавит терминальных символов ~ конечен, $\neq \emptyset$
+	
+	$N$ ~-- алфавит нетерминальных символов, конечен, $\neq \emptyset$
+	
+	$S$ ~-- начальный нетерминальный
+	
+	$R$ ~-- множество правил
+\end{definition}
+
 
 \end{document}
