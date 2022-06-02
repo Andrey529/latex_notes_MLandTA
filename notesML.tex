@@ -2910,4 +2910,1039 @@ $
 		\end{example}
 
 
+	\textbf{Лекция 9:}
+	
+\begin{proposition}
+	 Метод резолюций корректен ($Q$ ~-- логическое следствие $P_1, P_2, \dots P_n$)
+	 
+	 Если вывести $0 \Rightarrow Q$ ~-- действительно логическое следствие $P_1, P_2, \dots P_n$
+\end{proposition}
+
+	\textbf{Доказательство:}
+	
+	$P_1, P_2, \dots P_n$ ~-- исходные дьзъюнкты $P_1, P_2, \dots P_n \quad \overline{Q} = D_1 \dots D_N$ каждый следующий $D_i(i > N)$ ~-- логическое следствие двух прошлых дизъюнктов
+	
+	Пусть $x_1, \dots x_m$ ~-- значения переменных, на которых $P_1, P_2, \dots P_n \quad \overline{Q} = 1 \Rightarrow D_1 \dots D_N = 1$
+	
+	$\Rightarrow D_1 = 1, D_2 = 1 \dots D_N = 1, \: i > N = 1$
+	
+	$\Rightarrow 0 = 1$ ~-- невозможно, так как 0 = 0  
+
+\begin{proposition}
+	 Полнота метода резолюций. Если $D_1, D_2 \dots D_N = 0$, где $D_i$ ~-- дизъюнкт, то между резолюций может вывести 0
+\end{proposition}
+
+\begin{remark}
+	Метод резолюций не всегда позволяет получить 0 быстро, бывает неудачные $D_i$ шагов примерно $2^N$
+\end{remark}
+
+	\textbf{Доказательство:}
+
+	Индивидуально по количеству переменных $x_1 \dots x_m, \: 0 \dots m = 1$
+	
+	Какие дизъюнкты из первой переменной $x, \overline{x}, x \lor \overline{x} = 1$ среди $D_1, D_2 \dots D_N$ есть дизъюнкты $x$ и $\overline{x} \Rightarrow [x, \overline{x}] = 0$
+	
+	Переход $m$ ~-- $1 \rightarrow m.$  То есть для $m - 1$ переход можно всегда вывести 0
+	
+	$D_+$ ~-- то есть дизъюнкты, в которых нет $\overline{x_m}$
+	
+	$D_-$ ~-- то есть дизъюнкт, в которых нет $x_m$
+	
+\begin{example}
+	$(x_1 \lor \overline{x_2}) \cdot (\overline{x_2} \lor x_3) \cdot (x_1 \lor x_2 \lor \overline{x_3}) \cdot (\overline{x_2} \lor \overline{x_3})$
+	
+	$D_+ = [(x_1 \lor \overline{x_2}), (x_2 \lor x_3)]$
+	
+	$D_- = [(x_1 \lor \overline{x_2}), (x_1 \lor x_2 \lor \overline{x_3}), (\overline{x_2} \lor \overline{x_3})]$
+	
+	Теперь пусть $x_m = 0$ рассмотрим $D_+ \dots \lor x_m = 0$
+	
+	$D_- \dots \lor \overline{x_m} = 1$
+	
+	То есть все $D_+ \in 0 \Rightarrow D = 1 \Rightarrow D_1$ несовместимы, то есть $D = 0, D \in D_+$
+	
+	Выведем из $D^{\textrm{без} x_m}_+ = 0$
+	
+	Тогда, если вернуть $x_m, D_+$ выводит 0 или $x_m.$ Аналогично, если $x_m = 1, D_-$ выводит 0 или $\overline{x_m}.$ Если уже получены 0, то все. Если получены $x_m$ и $\overline{x_m} \Rightarrow$
+	
+	$[x_m, \overline{x_m}] = 0$
+\begin{center}
+
+\begin{tikzpicture}
+	[every node/.style={inner sep=0pt}]
+	\node (1) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (51.25pt, -49.375pt) {\textcolor{black}{$x \lor \overline{y}$}};
+	\node (2) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (102.5pt, -92.5pt) {\textcolor{black}{$x$}};
+	\node (3) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (146.875pt, -54.375pt) {\textcolor{black}{$y$}};
+	\node (4) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (211.25pt, -98.125pt) {\textcolor{black}{$\overline{x}$}};
+	\node (5) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (158.125pt, -143.125pt) {\textcolor{black}{0}};
+	\draw [line width=1.25, ->, color=black] (1) to  (2);
+	\draw [line width=1.25, ->, color=black] (3) to  (2);
+	\draw [line width=1.25, ->, color=black] (2) to  (5);
+	\draw [line width=1.25, ->, color=black] (4) to  (5);
+	\node at (51.25pt, -25.0pt) {\textcolor{black}{$D_+^{\textrm{без} z}$}};
+\end{tikzpicture}
+\end{center}	
+
+
+\begin{center}
+
+\begin{tikzpicture}
+	[every node/.style={inner sep=0pt}]
+	\node (1) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (51.25pt, -49.375pt) {\textcolor{black}{$x \lor \overline{y}$}};
+	\node (2) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (102.5pt, -92.5pt) {\textcolor{black}{$x \lor z$}};
+	\node (3) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (146.875pt, -54.375pt) {\textcolor{black}{$y \lor z$}};
+	\node (4) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (211.25pt, -98.125pt) {\textcolor{black}{$\overline{x} \lor z$}};
+	\node (5) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (158.125pt, -143.125pt) {\textcolor{black}{$z$}};
+	\draw [line width=1.25, ->, color=black] (1) to  (2);
+	\draw [line width=1.25, ->, color=black] (3) to  (2);
+	\draw [line width=1.25, ->, color=black] (2) to  (5);
+	\draw [line width=1.25, ->, color=black] (4) to  (5);
+	\node at (51.25pt, -25.0pt) {\textcolor{black}{$D_+$}};
+\end{tikzpicture}
+\end{center}	
+
+\begin{center}
+
+\begin{tikzpicture}
+	[every node/.style={inner sep=0pt}]
+	\node (1) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (51.25pt, -49.375pt) {\textcolor{black}{$x \lor \overline{y}$}};
+	\node (2) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (102.5pt, -92.5pt) {\textcolor{black}{$x$}};
+	\node (3) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (146.875pt, -54.375pt) {\textcolor{black}{$y$}};
+	\node (4) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (211.25pt, -98.125pt) {\textcolor{black}{$\overline{x}$}};
+	\node (5) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (158.125pt, -143.125pt) {\textcolor{black}{$0$}};
+	\draw [line width=1.25, ->, color=black] (1) to  (2);
+	\draw [line width=1.25, ->, color=black] (3) to  (2);
+	\draw [line width=1.25, ->, color=black] (2) to  (5);
+	\draw [line width=1.25, ->, color=black] (4) to  (5);
+	\node at (51.25pt, -25.0pt) {\textcolor{black}{$D_-^{\textrm{без z}}$}};
+\end{tikzpicture}
+\end{center}	
+
+\begin{center}
+
+\begin{tikzpicture}
+	[every node/.style={inner sep=0pt}]
+	\node (1) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (51.25pt, -49.375pt) {\textcolor{black}{$y \lor \overline{x}$}};
+	\node (2) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (102.5pt, -92.5pt) {\textcolor{black}{$\overline{x} \lor \overline{z}$}};
+	\node (3) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (146.875pt, -54.375pt) {\textcolor{black}{$\overline{y} \lor \overline{z}$}};
+	\node (4) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (211.25pt, -98.125pt) {\textcolor{black}{$x \lor \overline{z}$}};
+	\node (5) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (158.125pt, -143.125pt) {\textcolor{black}{$\overline{z}$}};
+	\draw [line width=1.25, ->, color=black] (1) to  (2);
+	\draw [line width=1.25, ->, color=black] (3) to  (2);
+	\draw [line width=1.25, ->, color=black] (2) to  (5);
+	\draw [line width=1.25, ->, color=black] (4) to  (5);
+	\node at (51.25pt, -25.0pt) {\textcolor{black}{$D_-$}};
+\end{tikzpicture}
+\end{center}	
+
+\end{example}
+
+	\textbf{Как доказывать?}
+	
+	\underline{Способ 1:}
+	
+	Методом резолюций, как в теореме. 
+	
+	$D \: D_- \: D_+$ решаем 2 подзадачи ~-- не эффективно
+	
+	\begin{tikzpicture}
+[every node/.style={inner sep=0pt}]
+	\node (1) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (45.0pt, -163.75pt) {\textcolor{black}{10 пер.}};
+	\node (2) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (103.75pt, -111.25pt) {\textcolor{black}{9пер.}};
+	\node (3) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (108.75pt, -205.625pt) {\textcolor{black}{9пер.}};
+	\node (4) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (168.125pt, -65.0pt) {\textcolor{black}{8пер.}};
+	\node (5) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (171.25pt, -130.625pt) {\textcolor{black}{8пер.}};
+	\node (6) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (170.625pt, -176.25pt) {\textcolor{black}{8пер.}};
+	\node (7) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (170.625pt, -240.0pt) {\textcolor{black}{8пер.}};
+	\node (8) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (236.875pt, -215.625pt) {\textcolor{black}{7пер.}};
+	\node (9) [circle, minimum size=31.25pt, fill=white, line width=1.25pt, draw=black] at (236.875pt, -264.375pt) {\textcolor{black}{7пер.}};
+\draw [line width=1.25, ->, color=black] (1) to  (2);
+\draw [line width=1.25, ->, color=black] (2) to  (4);
+\draw [line width=1.25, ->, color=black] (2) to  (5);
+\draw [line width=1.25, ->, color=black] (1) to  (3);
+\draw [line width=1.25, ->, color=black] (3) to  (6);
+\draw [line width=1.25, ->, color=black] (3) to  (7);
+\draw [line width=1.25, ->, color=black] (7) to  (8);
+\draw [line width=1.25, ->, color=black] (7) to  (9);
+\end{tikzpicture}
+
+	и так далее... Всего их будет 512 штук.
+	
+	\underline{Способ 2:}
+	насыщение по уровням
+	
+	Каждый с 0
+	
+	\begin{enumerate}
+		\item с каждым слагаемым
+		\item каждый с исходным шагом
+	\end{enumerate}
+
+\subsection{Исчисление предикатов}
+
+\begin{definition}
+	Формула исчисления предикатов
+	
+	\begin{enumerate}
+		\item{
+			Вводим множество $\sum_f$ ~-- множество функций символов		
+		}
+		\item{
+			Вводим множество $\sum_c$ ~-- множество констант (не обязательно функции от 0 переменных)		
+		}		
+		\item{
+			Вводим множество $\sum_p$ ~-- предикатные символы $P(x)$			
+		}
+		\item{
+				Вводим множество предикатных переменных $\sum_x$
+		}			
+	\end{enumerate}
+	
+	\textbf{Термины:}
+	
+	\begin{enumerate}
+		\item $x$ ~-- переменная
+		\item{
+			$f$ ~-- символ $(f(t_1, \dots t_n))$ ~-- где $t_1, \dots t_n$ ~-- термины		
+		}
+	\end{enumerate}
+\end{definition}
+
+
+
+	\textbf{11 Лекция}
+	
+	\textbf{Напоминание}
+	
+	Что такое функция исчисления предикатов
+	
+	$\forall x (\exists y P(f(x), y) \lor Q(g(x, c)))$
+	
+	$f, g, c$ ~-- функции
+	
+	$(f(x), y), (g(x, c))$ ~-- атамарные формы
+	
+	$x, f(x), (f(x),y), x, c, g(x, c)$ ~-- термы
+	
+	$P, Q$ ~-- предикаты
+	
+	$\forall \quad \exists$ ~-- кванторы
+	
+\begin{definition}
+	Сигнатура ~-- это множество функциональных символов и предикатов
+	
+	$${ f^1, g^2, e^0, P^2, Q^1}$$
+\end{definition}
+
+\begin{definition}
+	Интерпретация ~-- множество + смысл предикатов и функций
+\end{definition}
+
+	В интерпретации функция ~-- это предикат от несвязных переменных
+
+
+	$\forall x (x \geq x)$ ~-- все переменные связаны = 1
+	
+	$\forall (x \geq y)$ ~-- y не связанная переменная $=$
+	$\left \{ 
+  		\begin{gathered} 
+    			1 \quad y = 1  \\
+        		0 \quad y \neq 1 \\          		  	
+	  	\end{gathered} 
+	\right.$
+	
+	в $M = \mathbb{N}$
+
+
+\begin{example}
+	$M = \mathbb{N} = { 1, 2, 3, \dots}$ функции  $= +$
+	
+	$x > y = \exists k (x = y + k)$
+	
+	$x \geq y = x > y \lor x = y = \exists k (x = y + k)  \lor x = y$
+	
+	$x$ ~-- четные $= \exists k (x = k + k)$
+	
+	$x = 1 \quad = \forall y (y \geq x) = \forall y (\exists k (y = x + k) \lor y = x)$
+	
+	Добавим в функции $\cdot$
+	
+	$x \vdots y =  \exists k (x = y \cdot k)$
+	
+	$x \in \mathbb{P}$ ~-- простое число $= \overline{\exists y [(x \vdots y) \cdot (y > 1) \cdot (y < x)]} (x > 1) = $
+	
+	$= \forall y (x \vdots y \Rightarrow y = x \lor y = 1) (x > 1)$
+	
+\end{example}
+
+\begin{definition}
+	Пусть $F, G$ ~-- функции исчисления предикатов
+	
+	$F$ ~-- тождественно равно $G (F = G)$, если их значения совпадают в $\forall$ интерпретации
+\end{definition}
+
+\begin{example}
+	$\forall x (P(x) \Rightarrow Q(x)) = \forall x (\overline{P(x)} \lor Q(x))$
+	
+	$F = G$
+	
+	Данные функции тоже равны $a \Rightarrow b = \overline{a} \lor b$
+\end{example}
+
+\begin{remark}
+	Если функции отличаются заменой, верной в логике исчислений высказываний, то они равны
+\end{remark}
+
+\begin{example}
+	$\overline{\exists x P(x) \lor \exists x Q(x)} = \overline{\exists x P(x)} \cdot \overline{\exists x Q(x)}$
+\end{example}
+
+\subsubsection{Операции преобразования}
+
+\begin{enumerate}
+
+\item{
+	Переименование переменной, если $P$ не содержит $y$
+	
+	$\forall x P(x) = \forall y P(y) \qquad \exists x P(x) = \exists y P(y)$
+
+	$\exists k (x = y + k) = \exists l (x = y + l) \neq \exists x (x = y + x) \neq \exists y (x = y + y)$
+	
+	$\exists x \forall y P(x, y) = \exists x \forall z P (x, z) \neq \exists x \forall x P(x, x)$ ~-- некорректная функция
+}
+
+\item{
+	$\forall x \forall y P(x, y) = \forall y \forall x P(x, y)$
+
+	$\exists x \exists y P(x, y) = \exists y \exists x P(x, y)$
+	
+	
+	\textbf{Доказательство для $\forall$}
+	
+	Рассмотрим интерпретацию $I$
+	
+	левая функция истанна $\Leftrightarrow P(x, y) = 1 \quad \forall x, y \in M$
+	
+	Правая функция истинна $\Leftrightarrow P(x, y) = 1 \quad \forall x, y \in M$
+	
+	\begin{remark}
+		$\exists x \forall y P(x, y) \neq \forall y \exists x P(x, y)$
+		
+		$I M = \mathbb{R}, P(x, y): x > y$
+		
+		$\forall y \exists x (x > y) = 1$
+		
+		$\exists x \forall y (x > y) = 0$
+	\end{remark}
+}
+
+\item{
+	$\overline{\forall x P(x)} = \exists x \overline{P(x)}$
+	
+	$\overline{\exists x P(x)} = \forall x \overline{P(x)}$
+	
+	\textbf{Доказательство для $\forall$}
+	
+	$I M, P M \rightarrow \{ 0, 1\}$
+	
+	Если слева 0
+	
+	$\overline{\forall x P(x)} = 0 \Leftrightarrow \forall x P(x) = 1$
+	
+	$\Leftrightarrow P(x) = 1, x \in M$
+	
+	$\Leftrightarrow \overline{P(x)} = 0, x \in M$
+	
+	$\Leftrightarrow \exists x \overline{P(x)} = 0$
+}
+
+\item{
+	$\exists x P(x) \lor \exists x Q(x) = \exists x (P(x) \lor Q(x))$
+	
+	$\forall x P(x) \cdot \forall x Q(x) = \forall x (P(x) \cdot Q(x))$
+	
+	\textbf{Доказательство для $\exists$}
+	
+	Возьмем $I M, P \mathbb{R}$
+	
+		
+	
+	слева $ = 0 \Leftrightarrow$
+	$\left \{ 
+  		\begin{gathered} 
+    			\exists x P(x) = 0 \\          
+        		\exists x Q(x) = 0 \\ 
+	  	\end{gathered} 
+	\right.$
+	$\Leftrightarrow$
+	$\left \{ 
+  		\begin{gathered} 
+    			P(x) = 0, x \in M \\          
+        		Q(x) = 0, x \in M \\ 
+	  	\end{gathered} 
+	\right.$
+	$\Leftrightarrow P(x) \lor Q(x) = 0, x \in M \Leftrightarrow$
+	
+	$\exists x (P(x) \lor Qx()) = 0$
+	
+	аналогично для $\forall$
+	
+	\begin{remark}
+		Для другой связки
+		
+		$\forall x P(x) \lor \forall x Q(x) \neq \forall x (P(x) \lor Q(x))$ 
+		
+		Рассмотрим $I: M = \mathbb{N}$
+		
+		$P(x)$ ~-- x четные
+		
+		$Q(x)$ ~-- x нечетные
+		
+		$\forall x P(x) = 0$
+		
+		$\forall x Q(x) = 0$
+		
+		$\forall x P(x) \lor \forall x Q(x) = 0 \lor 0 = 0$
+		
+		$\forall x (P(x) \lor Q(x)) = 1$
+	\end{remark}
+
+}
+
+\item{
+	похожа на 4
+	
+	$\exists x P(x) \cdot Q = \exists x (P(x) \cdot Q)$
+	
+	$\exists x P(x) \lor Q = \exists x (P(x) \lor Q)$
+	
+	$\forall P(x) \cdot Q = \forall x (P(x) \cdot Q)$
+	
+	$\forall x P(x) \lor Q = \forall x (P(x) \lor Q)$
+
+	\textbf{Доказательство}
+	
+	$I: M, P, Q$
+	
+	$a \in M$	
+	
+	слева 1 $\Leftrightarrow$
+	$\left \{ 
+  		\begin{gathered} 
+    			\exists x P(x) = 1 \\         
+        		Q = 1 \\
+	  	\end{gathered} 
+	\right.$
+	$\Rightarrow$
+	$\left \{ 
+  		\begin{gathered} 
+    			P(a) = 1 \\         
+        		Q = 1 \\
+	  	\end{gathered} 
+	\right.$
+	$\Rightarrow P(a) \cdot Q = 1$
+	
+	$\Rightarrow \exists x (P(x) \cdot Q) = 1$
+	
+	Если слева 0
+	
+	если $Q = 0 \Rightarrow P(x) \cdot Q = \exists x (P(x) \cdot Q) = 0$
+	
+	если $Q = 1 \Rightarrow$ 
+	
+	$\exists x P(x) = 0 $
+
+	$\Rightarrow P(x) = 0, x \in M$ 
+
+	$\Rightarrow P(x) \cdot Q = Q, x \in M $
+
+	$\Rightarrow \exists x (P(x) \cdot Q) = 0$	
+	
+}
+
+\item{
+	$\exists x P = P$
+	
+	$\forall x P = P$
+	
+	\begin{example}
+		$\forall x P(x, f(x)) \Rightarrow Q$
+		
+		$\exists w (\forall x P(x, f(x)) \Rightarrow Q)$
+	\end{example}
+}
+
+\end{enumerate}
+
+\subsubsection{Нормальные формы}
+
+	\textbf{Мн Ж, КНФ, ДНФ}
+	
+\begin{definition}
+	Предваренная нормальная форма
+	
+	Формула исчисления предикатов имеет ПНФ, если 
+	
+	$$Q_1 x_1 Q_2 x_2 \dots Q_n x_n (  Matrix  )$$
+	
+	$Q_i = \forall$ или $\exists$
+	
+	Простыми словами, ПНФ ~-- это когда все кванторы стоят впереди
+\end{definition}
+
+\begin{example}
+	$\forall x \exists y (P(x, y) \Rightarrow Q(y))$
+\end{example}
+
+\begin{example}
+	$\forall x (P(x, y, z) \lor Q(c))$
+\end{example}
+
+\begin{example}
+	$\cancel{\forall x P(x) \cdot \exists x Q(x)}$
+\end{example}
+
+\begin{example}
+	$\cancel{\forall x (\exists y P(y) \lor Q(x))}  = \forall x \exists y (P(y) \lor Q(x))$
+\end{example}
+	
+	
+\begin{theorem}
+	Любая формула исчисления предикатов имеет ПНФ
+\end{theorem}
+
+	\textbf{Алгоритм приведения}
+	
+\begin{enumerate}
+\item{
+	Все связки кроме $\&, \lor, \neg$ заменяются на $\&, \lor, \neg$
+	
+	$a \Rightarrow b = \overline{x} \lor b$
+	
+	$a \Leftrightarrow b = (a \lor \overline{b})(\overline{a} \lor b)$ 
+}
+
+\item{
+	Все отрицания внутри кванторов
+	
+	$\overline{\forall x P(x)} = \exists x \overline{P(x)}$
+	
+	$\overline{\exists x P(x)} = \forall x \overline{P(x)}$ 
+}
+
+\item{
+	По свойству 6 вынести все кванторы в начало, возможно, заменной переменных
+}
+\end{enumerate}
+
+
+\begin{example}
+	$\forall x P(x) \lor \forall x Q(x)$
+	
+	$\neq \forall x (P(x) \lor Q(x))$	
+	
+	$ = \forall x P(x) \lor \forall y Q(y) = $
+	
+	$= \forall x (P(x) \lor \forall y Q(y)) = $
+	
+	$= \forall x \forall y (P(x) \lor Q(y))$ ~-- ПНФ
+\end{example}
+
+
+	\textbf{Лекция 13}
+	
+\begin{example}
+	Язык $L_{a = b} = \{ \textrm{слова, где a и b поровну}\}$
+	
+	$abc \in L_{a = b}$
+	
+	$abbbcccc \notin L_{a = b}$
+	
+	$ababa \notin L_{a = b}$
+
+	$\Lambda \in L_{a = b}$
+\end{example}
+
+\begin{example}
+	
+	$L_{a^n b^n} = \{ a^n b^n \: | n \in \mathbb{N} \cup \{0 \} \} = \{ \Lambda, ab, aabb, aaabbb, \dots \}$
+	
+	$x^n$ ~-- повторение $n$ раз
+	
+	$L_{a^n b^n} \subset L_{a = b}$
+\end{example}
+
+\begin{example}
+	$A = \{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, +, (, ), - \}$
+	
+	$L_{tel} = \{ \textrm{язык телефонных номеров} \}$
+	
+	$+7 (921) 401-00-00 \in L_{tel}$
+\end{example}
+
+\begin{definition}
+	Грамматика (формальная грамматика) ~-- это формальное описание языка
+	
+	Если есть грамматика языка $L$
+	
+	$\forall$ слова $w$ можно проверить $w \in L$ ?
+\end{definition}
+
+	\textbf{Типы грамматик:}
+
+	\begin{enumerate} \addtocounter{enumi}{-1}
+		\item{
+			Грамматику можно описать с помощью машины Тьюринга 
+	
+			Грамматика = программа проверяет $w \in L$ ?
+	
+			Если для языка создать программу проверки ~-- это тип 0		
+		}
+		\item{
+			Контекстно-зависимые грамматики
+			
+			Контекстно-зависимые языки ~-- описываются через конечно-зависимые грамматики		
+		}
+		\item{
+			Контекстно-свободные грамматики
+			
+			КС языки ~-- те языки, которые можно описать с помощью КС грамматик		
+		}
+		\item{
+			Регулярные выражения или конечные автоматы
+			
+			Регулярные языки задаются регулярными выражениями или конечными автоматами		
+		}
+	\end{enumerate}
+	
+\begin{remark}
+	Каждый следующий вид грамматики "проще предыдущего"
+	
+	Но множества его языков сужаются
+	
+	Языки типо 0 $\supset$ КЗ-языки $\supset$ КС-языки $\supset$ Регулярные языки
+\end{remark}
+
+\subsubsection{Машина Тьюринга}
+
+\begin{definition}
+	Машина Тьюринга = ($A; \Box; Q; R; q_0; Q_F$)
+	
+	$A$ ~-- алфавит, $\neq \emptyset,$ множество конечное
+	
+	$\Box \in A$ ~-- специальный символ
+	
+	$Q$ ~-- состояние, $\neq \emptyset,$ множество конечное
+
+	$R$ ~-- правила перехода
+	
+	$q_0 \in Q$ ~-- начальное состояние
+	
+	$Q_F \subset Q$ ~-- подмножество конечных состояний 
+	
+	$R: A \times Q \rightarrow A \times Q \times \{ L, R, E - \textrm{не двигаться}\}$
+\end{definition}
+
+\begin{example}
+
+	$A = \{ 1, \Box \}$
+	
+	$Q = \{ q_0, q_1 \}$
+
+	$Q_F = \{ q_1 \}$
+
+
+	\begin{table}[H]
+	\centering
+		\begin{tabular}{|c|c|c|}
+		\hline
+		$R/A$ & 1 & $\Box$ \\ \hline
+		$q_0$ & $1, q_1, R$ & $1, q_1, S$ \\ \hline
+		$q_1$ & не надо & не надо \\ \hline
+		\end{tabular}
+	\end{table}
+
+	
+	Конечное количество символов ленты $\neq \Box$	
+
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{...} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       $\uparrow$    \\
+        $q_0$
+	\end{tabular}
+	\end{table}
+
+	Сначало головка смотрит на клетку с индексом 0, состояние $q_0$
+	
+	Видим символ 1
+	
+	$R(1, q_0) = 1, q_0, R$ ~-- сдвинуть головку вправо
+	
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{...} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       & $\uparrow$    \\
+       & $q_0$
+	\end{tabular}
+	\end{table}	
+	
+	Головка на клетке 1
+	
+	Символ = 1
+	
+	Состояние = $q_0$
+	
+	$R(1, q_0) = 1, q_0, R$
+	
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{...} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       & & $\uparrow$    \\
+       & & $q_0$
+	\end{tabular}
+	\end{table}
+	
+	потом
+	
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{...} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       & & & $\uparrow$   
+	\end{tabular}
+	\end{table}
+
+	потом
+	
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{...} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       & & & & $\uparrow$   
+	\end{tabular}
+	\end{table}
+	
+	Теперь:
+	
+	Головка: клетка 4
+	
+	Символ: $\Box$
+	
+	Состояние: $q_0$
+	
+	$R(0, q_0) = 1, q_1, E$ ~-- стоим на месте
+	
+	\begin{table}[H]
+	
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{0} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{2} & 
+    \multicolumn{1}{|c}{3} & 
+	\multicolumn{1}{|c}{4} &     
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} & 
+	\multicolumn{1}{|c}{...} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}
+  \cline{1-9} 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+    \multicolumn{1}{|c}{1} & 
+	\multicolumn{1}{|c}{1} &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{...} \\
+  \cline{1-9}  
+       & & & & $\uparrow$   
+	\end{tabular}
+	\end{table}	
+		
+	Дано было 1111, результат 11111
+	
+	Вывод: программа дописывает 1
+	
+	Работа Машины Тьюринга формально 
+\end{example}
+
+\begin{definition}
+	Конфигурация: $(w, n \in \mathbb{N} \cup \{ 0 \}, q)$
+	
+	n ~-- положение головки
+	
+	$q \in Q$
+	
+	$w$ ~-- слово на ленте (без хвоста $\Box$)
+	
+	Один шаг исполнения программы:
+	
+	$(w_1, n_1, q_1) \rightarrow (w_2, n_2, q_2)$
+	
+	$w_1[n_1]$ ~-- символ над головкой
+	
+	$R(w_1[n_1], q_1) = (a, q_2, L/R/E)$
+	
+	$w_2 = w_1$ где $w_1[n] = a$
+	
+	если $L \rightarrow n_2 = n_1 - 1$
+	
+	$R \rightarrow n_2 = n_1 + 1$
+	
+	$E \rightarrow n_2 = n_1$
+	
+	Начало работы: $(w, O, q_0)$
+	
+	$w$ ~-- дана
+	
+	$O$ ~-- головка слова
+	
+	$q_0$ ~-- начальное слово
+	
+	$\rightarrow \dots \rightarrow \dots \rightarrow \dots \rightarrow (\overline{\overline{w}}, \overline{q} \in Q_F)$ ~-- конечное состояние
+	
+	Ответ: $\overline{\overline{w}}$, то есть из слова $w$ получили $\overline{\overline{w}}$
+\end{definition}
+
+\begin{remark}
+	(Тезис Чёрге)
+	
+	Все, что мы интуитивно понимаем как алгоритм, может быть реализовано с помощью машины Тьюринга
+\end{remark}
+
+\begin{remark}
+	Модификации машины Тьюринга:
+	
+	\begin{enumerate}
+		\item{
+			$\infty$ в обе стороны лента		
+		}
+		\item{
+			несколько лент		
+		}
+		\item{
+			недетерминированная машина Тьюринга		
+		}
+	\end{enumerate}
+	
+	1, 2, 3 ~-- это все эквивалент обычной машины Тьюринга
+\end{remark}
+
+\begin{remark}
+	Про проверку, слово в языке? $w \in ? L$
+	
+	\begin{table}[H]
+	\centering
+	\begin{tabular}{ *{9}{c} }
+  \cline{1-9} 
+    \multicolumn{1}{|c}{ } & 
+    \multicolumn{1}{|c}{ } & 
+    \multicolumn{1}{|c}{ } & 
+    \multicolumn{1}{|c}{ } & 
+	\multicolumn{1}{|c}{ } &     
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} & 
+	\multicolumn{1}{|c}{$\Box$} &     
+    \multicolumn{1}{|c|}{$\Box$} \\
+  \cline{1-9}  
+	\end{tabular}
+	\end{table}		
+	
+	Если результат $1 \Rightarrow w \in L$
+	
+	Если результат $0 \Rightarrow w \notin L$
+	
+	или 
+	
+	$\{ q_1, q_2\} = Q_F$
+	
+	$q_1: w \in L$
+	
+	$q_2: w \notin L$
+	
+	Все зависит от конечного состояния
+\end{remark}
+
+\subsubsection{Контекстно-свободные языки}
+
+\begin{example}
+	Email @ server
+	
+	username $\rightarrow$ word
+	
+	server $\rightarrow$ word.word
+	
+	word $\rightarrow \frame{a}$
+	
+	word $\rightarrow \frame{b}$
+	
+	word $\rightarrow \frame{c}$ 
+	
+	$E \rightarrow u@S \rightarrow w@S \rightarrow$ (используя правило $s \rightarrow w.w$) $w@w.w \rightarrow$ (используя правило $w \rightarrow ww$) $ww@w.w$
+	
+	$\rightarrow xw@w.w \rightarrow xy@w.w$
+	
+	$\rightarrow xy@ww.w \rightarrow xy@www.w$
+	
+	$\rightarrow xy@www.ww$
+\end{example}
+
+	Можно ли получить $xy@@ru$?
+	
+	нет $\notin L$
+	
+	то есть слова, которые можно получить, они $\in L$
+	
+\begin{example}
+
+	Еще
+
+	\begin{enumerate}
+		\item{
+			$S \rightarrow$		
+		}
+		\item{
+			$S \rightarrow aSb$		
+		}
+	\end{enumerate}
+	
+	~-- это грамматика 
+	
+	$S \rightarrow aSb \rightarrow aaSbb \rightarrow aaaSbbb \rightarrow aaabbb$
+	
+	Какие слова можно вывести?
+	
+	$\{ a^n b^n | n \geq 0\} = \{ \Lambda, ab, aabb, aaabbb, \dots  \}$
+\end{example}
+
+\begin{definition}
+	КС-грамматика ~-- $(A, N, S \in N, R)$
+	
+	$A$ ~-- алфавит терминальных символов ~ конечен, $\neq \emptyset$
+	
+	$N$ ~-- алфавит нетерминальных символов, конечен, $\neq \emptyset$
+	
+	$S$ ~-- начальный нетерминальный
+	
+	$R$ ~-- множество правил
+\end{definition}
+
+
 \end{document}
