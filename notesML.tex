@@ -3224,9 +3224,9 @@
 
     Логические связки ~-- нужно вычислить внутренню часть для всех x $\in $ M
 
-    $\forall x_{________________}$ Всегда 1, значит ответ 1, если хотя бы раз 0, то и общий ответ 0
+    $\forall x_{ \dots \dots \dots }$ Всегда 1, значит ответ 1, если хотя бы раз 0, то и общий ответ 0
 
-    $\exists x_{________________}$ Надо вычислить внутреннюю часть для всех х
+    $\exists x_{ \dots }$ Надо вычислить внутреннюю часть для всех х
 
     Если хотя бы 1 раз есть 1, то ответ 1
 
@@ -3779,7 +3779,7 @@
 
     \begin{example}
 
-        $\forall x \forall y [ (P(x) \lor \overline{Q(x,y)(R(x) \lor P(y))})]$
+        $\forall x \forall y [ (P(x) \lor \overline{Q(x,y)}(R(x) \lor P(y)))]$
 
         нет $\exists$ в [ ] КНФ
 
@@ -3798,14 +3798,16 @@
 
     \begin{definition}
 
-        Сколенизация - действие по избавлению от $\exists$ в ПНФ.
+        Сколемизация - действие по избавлению от $\exists$ в ПНФ.
 
         \end{definition}
 
     Действует так:
 
     $\forall x_{1} \forall x_{2} \exists x_{3} \forall x_{4} \exists x_{5} \forall x_{6} P(x_{1};x_{2};
-    x_{3};x_{4};x_{5};x_{6}) \rightarrow^{CK} \forall x_{1} \forall x_{2} \forall x_{3} \forall x_{4} \forall x_{5}
+    x_{3};x_{4};x_{5};x_{6}) \rightarrow^{CK}$
+    
+    $ \forall x_{1} \forall x_{2} \forall x_{3} \forall x_{4} \forall x_{5}
     \forall x_{6} P(x_{1};x_{2};f(x_{1};x_{2});x_{4};g(x_{1};x_{2};x_{4});x_{6})$
 
     $f(x_{1};x_{2})$ ~-- новый функциональный символ
@@ -3825,7 +3827,7 @@
 
         \begin{remark}
 
-            Сколенизация не создает эквивалетную формулу
+            Сколемизация не создает эквивалетную формулу
 
             \end{remark}
 
@@ -3839,7 +3841,7 @@
 
         \begin{theorem}
 
-        При сколенизации выполнимые формулы остаются выполнимыми и наоборот
+        При сколемизации выполнимые формулы остаются выполнимыми и наоборот
 
         \end{theorem}
 
@@ -3881,7 +3883,7 @@
 
         $\overline{Q} = \overline{M(сократ)})$
 
-        Дизъюнкты: $\overline{H(x)} \lor M(x);$ H(сократ); \overline{M($сократ$)}
+        Дизъюнкты: $\overline{H(x)} \lor M(x);$ H(сократ); $\overline{M(\textrm{сократ})}$
 
         \qquad \qquad \qquad $\bar{A} \lor B$ \qquad \qquad $C$ \qquad \qquad $\bar{D}$
 
@@ -3901,9 +3903,9 @@
 
     P(x,c) \qquad \qquad \qquad P(f(y,c))
 
-    \searrow \qquad  x = f(c) \qquad \swarrow
+    $\searrow \qquad  x = f(c) \qquad \swarrow$
 
-     \qquad \searrow  y = c \qquad \swarrow
+    $ \qquad \searrow  y = c \qquad \swarrow$
 
     \qquad \qquad P(f(c),c)
 
@@ -3965,7 +3967,7 @@
 
             5) $\forall x \forall y (V(x)G(y) \Rightarrow W(x,y) )$ \quad $\forall $ вампир сильнее $\forall $ приведения
 
-            6) $\overline \forall x (V(x) O(x)) $ O не бывает оборотней - вампиров
+            6) $\overline{ \exists x (V(x) O(x))} $ O не бывает оборотней - вампиров
 
             0') $\forall x \forall y [\overline{w(x,y)} \lor \overline{w(y,x)}]$
 
@@ -3973,7 +3975,7 @@
 
             2') G(g)
 
-            3') $\forall x \forall y [G(x)(\overline{(O(y)})) \lor W(x,y)] \rightarrow^{CK} \forall y [ G(g^{\^}) (\overline{O(y)} \lor W(\stackrel{ * }{g},g )) ] $
+            3') $\exists x \forall y [G(x)(\overline{(O(y)})) \lor W(x,y)] \rightarrow^{CK} \forall y [ G(\stackrel{ * }{g}) (\overline{O(y)} \lor W(\stackrel{ * }{g},g )) ] $
 
             4') V(v)
 
@@ -3981,7 +3983,7 @@
 
             6') $\exists x [V(x) O(x)] \rightarrow V(a) o(a) $
 
-            Дизъюнкты: (без \forall)
+            Дизъюнкты: (без $\forall$)
 
             0) $\overline{w(x,y) } \lor \overline{w(y,x)} $
 
@@ -3993,7 +3995,7 @@
 
             7) V(a)
 
-            8) Q(a)
+            8) O(a)
 
 
 
@@ -4017,9 +4019,7 @@
             \textcircled{7} &            \\
         \end{array}
         \right. \vline \rightarrow w(a,\stackrel{ * }{g})
-
         $
-
             $ $
 
 
@@ -4098,14 +4098,14 @@
 
         c $\rightarrow$ длина 1
 
-        \Lambda ~-- длина 0 \Lambda
+       $ \Lambda$ ~-- длина 0 $\Lambda$
 
-        \Lambda ~-- пустое слово
-
-
+        $\Lambda$ ~-- пустое слово
 
 
-        \Labda $\notin$ A
+
+
+        $\Lambda$ $\notin$ A
         \end{example}
 
     \begin{definition}
