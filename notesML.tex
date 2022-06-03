@@ -3110,7 +3110,300 @@
         \end{enumerate}
     \end{definition}
 
+    \textbf{Лекция 10}
 
+    \begin{definition}
+
+        Логическая формула ~-- функция исчисления предикатов. Выраженте из логических связок, атомарных формул.
+
+        \end{definition}
+
+
+    $P(x) \lor Q(x,f(y))$ \qquad $P(x) \Rightarrow (Q(x) \lor R(x))$
+
+    Если P - формула, то $\forall x$ P - тоже
+
+    x - переменная $\exists x P$ - тоже
+
+    Наличие переменной внутри P недопустимо.
+
+    \begin{remark}
+
+        Приоритеты связок - смотрите раньше, кванторы имеют максимальный приоритет.
+
+        \end{remark}
+
+    \begin{example}
+
+        $\forall P(x)$
+
+        $\exists x Q(x,y)$
+
+        $\forall x \exists y P(x,y)$
+
+        $\forall x P(x) \Rightarrow \exists x Q(x)$
+
+        $\forall x (P(x) \Rightarrow \exists y Q(y))$
+
+        $\forall x \exists y P(x)$
+
+        $\forall x (P(x)) \Rightarrow \exists x Q(x))$ ~-- не подойдет так как х встречается два раза
+
+        \end{example}
+
+    \begin{definition}
+
+        $\forall x P(x)$ ~-- связное вхождение x в формулу
+
+        \end{definition}
+
+    Если квантора для переменой нет, то это не связное вхождение
+
+    $\forall x P(x,y) \lor \exists y Q(x,y,z)$, где $\forall x P(x $ - связное, y ) - не связное
+
+    $\exists E y Q(y,$ соответсвенное связное)
+
+    $z - $ свободная переменная
+
+    (все вхождения не связаны)
+
+    \textbf{Напоминание}
+
+    Сигнатура ~-- символы для предикатов, функций, константы
+
+    \begin{example}
+
+        P(-,-) f(-) g(-,-) c
+
+        \end{example}
+
+    Определив сигнатуру, используют в формулах только эти символы
+
+    $\exists x \forall y P(x,y) \exists Q(x)$ ~-- не из этой сигнатуры
+
+    \begin{definition}
+
+        Интерпретация
+
+        1) М ~-- предикатное множество
+
+        2) Каждой функциональный символ становится функцией
+
+        f : $M^{k} \rightarrow M$, где k ~-- аргументы f
+
+        \end{definition}
+
+    3) Каждый предикатный символ становится функцией из $M^{k}$ : \{ 0,1 \}
+
+    \begin{example}
+
+        $\forall x P(x) = 0 $ - ложь для Z, P ~-- четное
+
+        $\forall x P(x) = 1$ для Z P(x) : $x^{2} \neq 0 $
+
+        $\forall x \exists y P(x,y) = 1 ZP:x>y$, если = 0 N
+
+
+        \end{example}
+
+    Для любого числа x найдется число y, такое что x>y
+
+    Вычисление значения формулы в заданной итерации
+
+    1) нужно выбрать значение несвязных переменных
+
+    $\qquad \qquad \qquad y = 10 = 1$
+
+    $\exists x P(x,y) = $
+
+    $\qquad \qquad \qquad y = 0 = 0$
+
+    2) f - функциональный символ f($x_{1} \dots x_{n}$) ~-- считаем как функцию $\Rightarrow$ вычислим все термы
+
+    P ~-- предыдущий символ $P(t_{1} \dots t_{k})$ ~-- считаем сами функцию, получаем 0 или 1
+
+    Логические связки ~-- нужно вычислить внутренню часть для всех x $\in $ M
+
+    $\forall x_{________________}$ Всегда 1, значит ответ 1, если хотя бы раз 0, то и общий ответ 0
+
+    $\exists x_{________________}$ Надо вычислить внутреннюю часть для всех х
+
+    Если хотя бы 1 раз есть 1, то ответ 1
+
+    Если всегда 0, то ответ 0
+
+    M = N
+
+    P(x) = 1 или х четное \qquad \qquad P(x) = x - четное
+
+    \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|}
+                    \hline
+                    $\forall x$ & $P(x)$ \\ \hline
+                    1      & 1       \\ \hline
+                    2      & 0       \\ \hline
+                    3      & 1       \\ \hline
+                    .      & .       \\ \hline
+                    .      & .       \\ \hline
+                    .      & .       \\ \hline
+                \end{tabular}
+            \end{table}
+
+    $\Rightarrow \forall x P(x) = 0$
+
+    $\exists x P(x)$ в той же интерпретации
+
+    \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|}
+                    \hline
+                    $\forall x $ & $P(x)$ \\ \hline
+                    1      & 1       \\ \hline
+                    2      & 0       \\ \hline
+                    3      & 1       \\ \hline
+                    .      & .       \\ \hline
+                    .      & .       \\ \hline
+                    .      & .       \\ \hline
+                \end{tabular}
+            \end{table}
+
+    $\exists x P(x) = 1$
+
+    \begin{example}
+
+        $\forall x \exists y P(x,y) $ \qquad $M = N$ \qquad $P(x,y) : x > y$
+
+        \textbf{x = 1}
+
+        \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|}
+                    \hline
+                    $ y $ & $P(x,y)$ \\ \hline
+                    1      & 0       \\ \hline
+                    2      & 0       \\ \hline
+                    3      & 0       \\ \hline
+                    4      & 0       \\ \hline
+                    5      & 0       \\ \hline
+                    .      & .       \\ \hline
+                    .      & .       \\ \hline
+                \end{tabular}
+            \end{table}
+
+        \textbf{x = 2}
+
+        \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|}
+                    \hline
+                    $ y $ & $P(x,y)$ \\ \hline
+                    1      & 1       \\ \hline
+                    2      & 0       \\ \hline
+                    3      & 0       \\ \hline
+                    4      & 0       \\ \hline
+                    5      & 0       \\ \hline
+                    .      & .       \\ \hline
+                    .      & .       \\ \hline
+                \end{tabular}
+            \end{table}
+
+        \textbf{x = 3}
+
+        \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|}
+                    \hline
+                    $ y $ & $P(x,y)$ \\ \hline
+                    1      & 1       \\ \hline
+                    2      & 1       \\ \hline
+                    3      & 0       \\ \hline
+                    4      & 0       \\ \hline
+                    5      & 0       \\ \hline
+                    .      & .       \\ \hline
+                    .      & .       \\ \hline
+                \end{tabular}
+            \end{table}
+
+        $\exists y P(x,y)$ Вычисляем для $\forall y P(x,y)$
+
+        $\forall x \exists y P(x,y) = 0$ при x = 1
+
+
+
+        \end{example}
+
+    \begin{example}
+
+        В той же интерпретации $\exists y \forall x P(x,y)$
+
+        \begin{table}[h!]
+                \centering
+                \begin{tabular}{|c|c|}
+                    \hline
+                    $\forall x $ & $P(x)$ \\ \hline
+                    y = 1      & 0       \\ \hline
+                    y = 2      & 0       \\ \hline
+                    y = 3      & 0       \\ \hline
+                    .      & .       \\ \hline
+                    .      & .       \\ \hline
+                    .      & .       \\ \hline
+                \end{tabular}
+            \end{table}
+
+        \begin{remark}
+
+            Часто функциональные символы, кванторы, пишут "привычно"
+
+            \end{remark}
+
+        $\forall x P(f(x),x)$
+
+        Если P(x,y) = x > y, то будет $\forall x (x + 1 > x)$
+
+        f(x) = x + 1
+
+        Префиксная форма
+
+        инфиксная форма
+
+        \end{example}
+
+    \begin{example}
+
+        Все люди смертны 1
+
+        сократ человек 2
+
+        сократ смертен 3
+
+        \end{example}
+
+    M = \{ Все живые существа\}
+
+    H(x) ~-- x - человек
+
+    S ~-- константы S $\in$ M, S ~-- сократ
+
+    P(x) ~-- смертен
+
+    $H(s)_{2} * \forall x [ h(x) \Rightarrow P(x)  ]_{1} \Rightarrow D(s)_{3}$
+
+    Эта формула истинна, но:
+
+    Возьмем интерпретацию и сигнатуру M = N, предикаты =, >. ф - символ +
+
+    $\exists K (x + k) = y$ - x,y свободные
+
+    x = 5 \qquad y = 10 \quad 1
+
+    x = 10 \qquad y = 5 \quad 0
+
+    $\exists x (x+k=y) = x <y$
+
+    $\forall (x < k \lor x = k) = x = 1$
+
+    $\forall k (\exists t(x+t=k) \lor x = k) =x = 1 $
 
     \textbf{11 Лекция}
 
