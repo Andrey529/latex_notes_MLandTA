@@ -4628,5 +4628,455 @@
         $R$ ~-- множество правил
     \end{definition}
 
+\textbf{Лекция 14}
+
+	КС ~-- грамматика
+
+	А ~-- Алфавит
+
+	N ~-- нетерминальные символы (алф.)
+
+	S $\in$ N ~-- начальное
+
+	R ~-- правило вида $N \rightarrow (A \lor N)^{*}$
+
+	\begin{definition}
+
+		Из слова $w \in ( A \in N)^{*}$ выводится u $\in (A \lor N)^{*}$ если w = $\dots x \dots \rightarrow u = \dots $ Y $\dots$
+
+		где $X \rightarrow Y \in R$
+		\end{definition}
+
+	\begin{definition}
+
+		Вывод ~-- это последовательность $w_{i} : w_{i-1} \rightarrow w_{i}$
+
+		\end{definition}
+
+	$w_{1} \rightarrow w_{2} \rightarrow w_{3} \dots \rightarrow w_{n} = w_{1} \rightarrow^{*} w_{n}$
+
+	вывод $w_{n} $ из $w_{1}$
+
+	\begin{definition}
+
+		Язык, который задает КС - грамматика
+
+		$L = \{ w/ \exists $ вывод $S^{*} \rightarrow w$ $\}$
+
+		\end{definition}
+
+	\begin{example}
+
+		1) HTML \qquad H ~-- начальный нетерминал
+
+		$H \rightarrow EH$ \qquad \qquad \qquad T ~-- тэг, L ~-- символы
+
+		$H \rightarrow$
+
+		$H \rightarrow $
+
+		$H \rightarrow EH$
+
+		$H \rightarrow EH \rightarrow EEH \rightarrow EE$
+
+		$H \rightarrow EE \dots E$
+
+		$E \rightarrow T$
+
+		$E \rightarrow L$
+
+		$L \rightarrow a$
+
+		$L \rightarrow b$
+
+		$L \rightarrow c$
+
+		$.$
+
+		$.$
+
+		$L \rightarrow A$
+
+		\end{example}
+
+	Устройство тэгов:
+
+	$T \rightarrow O$
+
+	Т ~-- тэг
+
+	L ~-- символы
+
+	O ~-- открывание тэга
+
+	С ~-- закрывание тэга
+
+	T ~-- ОНС
+
+	T ~-- $< \dots > \dots <\dots>$
+
+	T ~-- $< \dots >_{img}$
+
+	O $\rightarrow <N>$
+
+	C $\rightarrow <\mathbf{N}>$
+
+	N $\rightarrow$
+
+	N $\rightarrow LN$
+
+	N $\rightarrow$ LLLL
+
+	Выведем hello,<b>World<h>!
+
+	$H \rightarrow EH \rightarrow EEG \rightarrow^{*} EEEEEEEEEH \rightarrow EEEEEEEEE \rightarrow^{*} LLLLLLLTL \rightarrow^{*} h,T!$
+
+	$\rightarrow hello, <N> world <\mathbf{N}>!$
+
+	$\rightarrow^{*} hello, <b> world </b>!$
+
+	Итого, hello, <b> world $</t>! \in \alpha$
+
+	Что есть в теме?
+
+	~-- алгоритм разбора
+
+		Дана грамматика, слово, получить вывод слова или понять, что оно не выводится ~-- специальные виды грамматик с эффектом алг. разбора
+
+	$*LL(1) LR(1) LALR(1) \dots$
+
+	\subsubsection{Регулярные языки}
+
+	Задаются регулярными выражениями и конечными автоматами
+
+	Регулярные языки и выражения
+
+	\begin{definition}
+
+		Регулярные языки
+
+		1) $\{a\}$, где $a \in A$ регулярный
+
+		2) если $L_{1}$ и $L_{2}$ ~-- регулярные, то $L_{1}L_{2} = \{w_{1}w_{2}\}, w_{1} \in L_{1}, w_{2} \in L_{2})$ ~-- регулярный
+
+		$L_{1}L_{2}$ ~-- регулярные
+
+		$L_{1}|L_{2} = L_{1} \lor L_{2}$ ~-- регулярный
+
+		\end{definition}
+
+	\begin{example}
+
+		A = $\{a,b,c\}$
+
+		$\{a\}$ \qquad $\{b\} = \{ad\}$
+
+		$\{ab\}|\{b\}=\{abc\}$
+
+		$\{a\}|\{b\} = \{a,b\}$
+
+		$\{a,b\}|\{b\}|\{c\} = \{ab,bc\}$
+
+		$\{ab,b,c\}\{b,bc\} = \{abb,abbc,bb,bbc,cb,cbc\}$
+
+		$\{a\}^{*} = \{\Lambda,a,aa,aaa,\dots \} $
+
+		$\{a,b\}^{*} = \{\Lambda,a,b,aa,ab,ba,bb,aab,abb,\dots \}$ ~-- слова из a и b
+
+		$\{a,bc\}^{*} = \{\Lambda,a,bc,abc,bca,aa,bcbc,\dots,aabc,abcbcaa \}$
+
+		\end{example}
+
+	\begin{definition}
+
+		Регулярные выражения ~-- это выражение над языками.
+
+		\end{definition}
+
+	1) Определим ~-- конк, 1, итерация
+
+	2)$\{a\} $ ~-- записываются как *
+
+	\begin{example}
+
+		$abc^{*} = \{ ab,abc,abcc,abccc,\dots \}$
+		$\uparrow$
+		конк
+		$\downarrow$
+		$a(bc)^{*} = \{ a,abc,abcbc,abcbcbc,\dots\}$
+
+		$(0|1|2)(0|1|2|3|\dots|9):(0|1|2|3|4|5)$
+
+		$(0|1|2|\dots|9)$ ~-- время
+		\end{example}
+
+	$A = \{ 0,1,2,\dots 9,:\}$
+
+	23:56 \qquad 29:40??
+
+	Нормальное время
+
+	[0123456789]
+
+	$((0|1)(0|1\dots|9)(20|21|22|23):(0|\dots|5)(0)\dots(9))$
+
+	\begin{example}
+
+	$(a|b)^{*} = \{ \Lambda a,b,ab,aa,bb,ba,\dots,abbaab\dots \}$
+
+		$(ab)^{*} = \{ \Lambda, ab,abab,ababab,\dots \}$
+
+		$a^{*}|b^{*} = \{ \Lambda,a,aa,aaa,aaaa,\dots,b,bb,bbb,bbbb,\dots \}$
+
+		\end{example}
+
+	$\{a^{4}b^{4}/n \in \mathbf{N}$ ~-- не регулярный язык
+
+	\begin{definition}
+
+		Конечные автоматы это $\{ Q,S \subset Q, F \subset Q, E \subset Q x Q x A \lor \{\epsilon\}) \}$
+
+		Q ~-- конечное не пустое множество состояний.
+
+		S ~-- начальное состояние
+
+		F ~-- конечные состояние
+
+		A ~-- алфавит
+
+		E ~-- переходы между состояниями
+
+		$q_{1} \rightarrow^{A,\epsilon } q_{2}$
+
+		\end{definition}
+		
+		$ $
+		
+		$ $
+		
+		Это состояние:
+		\usetikzlibrary{shapes.geometric}
+\begin{tikzpicture}
+[every node/.style={inner sep=0pt}]
+\node (1) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=black] at (104.375pt, -54.375pt)  {};
+\end{tikzpicture}
+		
+		Начальное состояние:
+		\usetikzlibrary{shapes.geometric}
+\begin{tikzpicture}
+[every node/.style={inner sep=0pt}]
+\node (1) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=red] at (62.5pt, -57.5pt)  {};
+\end{tikzpicture}
+
+		$ $
+		
+		$ $
+		
+		$ $
+    Конечное состояние:
+    \usetikzlibrary{shapes.geometric}
+\begin{tikzpicture}
+[every node/.style={inner sep=0pt}]
+\node (1) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=green] at (64.375pt, -110.0pt)  {};
+\end{tikzpicture}
+
+$ $
+
+$ $
+
+\usetikzlibrary{shapes.geometric}
+\begin{tikzpicture}
+[every node/.style={inner sep=0pt}]
+\node (1) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=black] at (110.625pt, -151.25pt)  {};
+\node (2) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=black] at (172.5pt, -108.125pt)  {};
+\node (4) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=green] at (105.625pt, -50.625pt)  {};
+\node (3) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=red] at (44.375pt, -108.125pt)  {};
+\draw [line width=0.625, ->, color=black, loop above] (3) to (3);
+\draw [line width=0.625, ->, color=black] (3) to  [in=204, out=63] (4);
+\draw [line width=0.625, ->, color=black] (3) to  [in=250, out=18] (4);
+\draw [line width=0.625, ->, color=black] (4) to  [in=96, out=6] (2);
+\draw [line width=0.625, ->, color=black] (2) to  (4);
+\draw [line width=0.625, ->, color=black] (2) to  [in=264, out=195] (4);
+\draw [line width=0.625, ->, color=black] (1) to  [in=221, out=30] (2);
+\draw [line width=0.625, ->, color=black] (1) to  [in=195, out=53] (2);
+\draw [line width=0.625, ->, color=black] (2) to  [in=336, out=276] (1);
+\draw [line width=0.625, color=black, loop above] (3) to (3);
+\draw [line width=0.625, color=black] (3) to  [in=123, out=351] (1);
+\node at (96.25pt, -166.875pt) {\textcolor{black}{D}};
+\node at (190.625pt, -108.125pt) {\textcolor{black}{C}};
+\node at (105.625pt, -30.0pt) {\textcolor{black}{B}};
+\node at (25.625pt, -108.125pt) {\textcolor{black}{A}};
+\node at (33.75pt, -84.375pt) {\textcolor{black}{a}};
+\node at (63.125pt, -65.625pt) [rotate=43] {\textcolor{black}{b}};
+\node at (88.125pt, -95.0pt) [rotate=42] {\textcolor{black}{a}};
+\node at (163.125pt, -59.375pt) [rotate=314] {\textcolor{black}{b}};
+\node at (150.0pt, -77.5pt) [rotate=321] {\textcolor{black}{c}};
+\node at (123.75pt, -94.375pt) [rotate=317] {\textcolor{black}{a}};
+\node at (144.375pt, -140.0pt) [rotate=34] {\textcolor{black}{e}};
+\node at (128.125pt, -119.375pt) [rotate=39] {\textcolor{black}{a}};
+\node at (163.125pt, -159.375pt) [rotate=35] {\textcolor{black}{b}};
+\node at (85.0pt, -130.625pt) [rotate=320] {\textcolor{black}{e}};
+\end{tikzpicture}
+
+	$\epsilon $ ~-- пустой переход
+
+	$Q = \{ A,B,C,D\}$
+	
+	\begin{definition}
+	Конфигурация $\in A^{*} x Q$ ~-- слово и состояние 
+	\end{definition}
+
+\begin{example}
+(abc,A)
+(bb,B)
+($\Lambda,A)$
+\end{example}
+
+\begin{definition}
+Из конфигурации 1 выводится конфигурация 2
+
+$(w_{1}, q_{1}) \rightarrow (w_{2},q_{2})$
+
+если $\exists e \in E: q_{1} \rightarrow^{a} q_{2} $ и $W_{2} = w_{1}a$
+
+\end{definition}
+
+\begin{example}
+$(\Lambda,A) \rightarrow (a,A) \rightarrow^{A \rightarrow^{a} A} (aa,A) \rightarrow^{A \rightarrow^{b} B} $
+
+\qquad \qquad $\vdots$
+
+$\rightarrow^{B \rightarrow^{b} c} (aabb,c) \rightarrow^{c \rightarrow^{b} D} (aabbb,D) \rightarrow^{D \rightarrow^{\epsilon} C} (aabbb,c) $
+
+\end{example}
+
+\begin{definition}
+Какой язык задает конечный автомат?
+
+слово w $\in$ L, если $\exists $ вывод $(\Lambda,s) \rightarrow \dots \rightarrow (w,f) $, где $s \in S, f \in F$
+\end{definition}
+
+S ~-- начальное
+
+f ~-- конечное
+
+если могу прочитать слово w, начав  в начальном состоянии, закончив в конечном.
+
+\begin{definition}
+в прошлом примере 
+
+aabbb $\in L$
+
+$aabb \in L$
+
+$aab \in L$
+
+$a \in L$
+
+$a \rightarrow^{\epsilon} D \rightarrow^{a} C $
+\end{definition}
+
+\begin{example}
+
+$ $
+
+$ $
+
+$ $
+\usetikzlibrary{shapes.geometric}
+\begin{tikzpicture}
+[every node/.style={inner sep=0pt}]
+\node (1) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=red] at (64.375pt, -110.625pt)  {};
+\node (2) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=green] at (150.0pt, -111.25pt)  {};
+\draw [line width=0.625, ->, color=black] (1) to  [in=120, out=60] (2);
+\draw [line width=0.625, ->, color=black] (2) to  [in=300, out=240] (1);
+\node at (103.125pt, -70.625pt) [rotate=4] {\textcolor{black}{a}};
+\node at (107.5pt, -151.25pt) [rotate=1] {\textcolor{black}{b}};
+\end{tikzpicture}
+
+L = $\{ a,aba,ababa,\dots \}$ = $a(ba)^{*}$
+\end{example}
+
+\textbf{Увтерждение}
+
+Язык регулярный $\Leftrightarrow \exists$ конечный автомат, который его принимает
+
+AB: \textcircled{} $\rightarrow^{A}$ \textcircled{} $\rightarrow^{B}$ B
+
+A/B:
+
+\qquad \quad $ A $
+
+\qquad $\nearrow \searrow$
+
+$\textcircled{} $ \qquad \quad $\textcircled{}$
+
+\qquad $\searrow$  $\nearrow$
+
+\qquad \quad $ B $
+
+$A^{*}$
+
+\usetikzlibrary{shapes.geometric}
+\begin{tikzpicture}
+[every node/.style={inner sep=0pt}]
+\node (1) [circle, minimum size=12.5pt, fill=white, line width=0.625pt, draw=black] at (85.625pt, -63.125pt)  {};
+\node (2) [circle, minimum size=12.5pt, fill=white, line width=0.625pt, draw=black] at (65.0pt, -63.125pt)  {};
+\node (3) [circle, minimum size=12.5pt, fill=white, line width=0.625pt, draw=black] at (45.0pt, -63.125pt)  {};
+\draw [line width=0.625, ->, color=black] (3) to  (2);
+\draw [line width=0.625, ->, color=black] (2) to  (1);
+\draw [line width=0.625, ->, color=black, loop above] (2) to (2);
+\node at (65.0pt, -40.625pt) {\textcolor{black}{A}};
+\end{tikzpicture}
+
+Авт $\rightarrow $ Регулярное выражение - убирание вершин
+
+\begin{definition}
+Детерминированный КА ~-- это КА, у которого
+
+1) |S| = 1 ровно 1 нач вершина
+
+2) нет $\epsilon$ ~-- переходов
+
+3) $\textcircled{} \nearrow \searrow$ нет двух переходов с одинаковыми символами и началом
+\end{definition}
+
+\usetikzlibrary{shapes.geometric}
+\begin{tikzpicture}
+[every node/.style={inner sep=0pt}]
+\node (1) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=red] at (26.25pt, -59.375pt)  {};
+\node (2) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=black] at (76.25pt, -60.625pt)  {};
+\node (3) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=black] at (131.875pt, -62.5pt)  {};
+\node (4) [circle, minimum size=25.0pt, fill=white, line width=0.625pt, draw=black] at (191.875pt, -64.375pt)  {};
+\draw [line width=0.625, ->, color=black, loop above] (1) to (1);
+\draw [line width=0.625, ->, color=black, loop below] (1) to (1);
+\draw [line width=0.625, ->, color=black] (1) to  (2);
+\draw [line width=0.625, ->, color=black] (2) to  (3);
+\draw [line width=0.625, ->, color=black] (3) to  (4);
+\draw [line width=0.625, ->, color=black, loop above] (2) to (2);
+\draw [line width=0.625, ->, color=black] (3) to  [in=57, out=117] (2);
+\draw [line width=0.625, ->, color=black, loop above] (4) to (4);
+\draw [line width=0.625, ->, color=black, loop right] (4) to (4);
+\draw [line width=0.625, ->, color=black, loop below] (4) to (4);
+\draw [line width=0.625, ->, color=black] (2) to  [in=307, out=229] (1);
+\draw [line width=0.625, ->, color=black] (3) to  [in=297, out=237] (1);
+\node at (15.625pt, -35.625pt) {\textcolor{black}{b}};
+\node at (36.25pt, -83.125pt) {\textcolor{black}{c}};
+\node at (50.625pt, -51.25pt) {\textcolor{black}{a}};
+\node at (97.5pt, -52.5pt) {\textcolor{black}{b}};
+\node at (157.5pt, -54.375pt) {\textcolor{black}{c}};
+\node at (65.625pt, -36.875pt) {\textcolor{black}{a}};
+\node at (118.125pt, -32.5pt) [rotate=334] {\textcolor{black}{a}};
+\node at (181.25pt, -40.625pt) {\textcolor{black}{a}};
+\node at (225.0pt, -64.375pt) {\textcolor{black}{c}};
+\node at (191.875pt, -100.625pt) {\textcolor{black}{b}};
+\node at (69.375pt, -80.0pt) [rotate=36] {\textcolor{black}{c}};
+\node at (77.5pt, -107.5pt) [rotate=359] {\textcolor{black}{b}};
+\end{tikzpicture}
+
+Дет, язык слов, содержащих abc.
+
+Аналогичный подтерм $(a|b|c)^{*}abc(a|b|c)^{*}$
+
 
 \end{document}
